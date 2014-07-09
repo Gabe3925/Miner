@@ -1,28 +1,32 @@
-== README
+####MINER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+###By Gabe Snyder
 
-Things you may want to cover:
+##TABLE OF CONTENTS:
+#overview
+#intallation
+#gameplay
+#technical details
+#trouble shooting
 
-* Ruby version
+OVERVIEW:
+A game in JavaScript and Ruby, on Rails.
+Developed July 9 to July 16, 2014
+As part of the Web Development course at General Assembly DC.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+INSTALLATION:
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+
+GAMEPLAY:
+
+
+
+
+TECHNICAL DETAILS:
+
+
+
+
+TROUBLE SHOOTING:
