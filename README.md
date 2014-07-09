@@ -1,37 +1,37 @@
-####MINER
+#MINER
 
-###By Gabe Snyder
+##By Gabe Snyder
 
-##TABLE OF CONTENTS:
+###TABLE OF CONTENTS:
 * overview
 * intallation
 * gameplay
 * technical details
 * trouble shooting
 
-#OVERVIEW:
+###OVERVIEW:
 A game in JavaScript and Ruby, on Rails.
 Developed July 9 to July 16, 2014
 As part of the Web Development course at General Assembly DC.
 
-#INSTALLATION:
+###INSTALLATION:
 
 
 
 
-#GAMEPLAY:
+###GAMEPLAY:
 
 
 
 
-#TECHNICAL DETAILS:
+###TECHNICAL DETAILS:
 
 Entity-Relationship Diagrams from development:
-![A photo of the drawing on a whiteboard.][1_erd.jpg]
+![A photo of the drawing on a whiteboard.][/images/1_erd.jpeg]
 
 Game Wireframes:
-![A photo of interrelated wireframes on a whiteboard.][1_wireframe.jpg]
+![A photo of interrelated wireframes on a whiteboard.][/images/1_wireframe.jpeg]
 
 
 
-#TROUBLE SHOOTING:
+###TROUBLE SHOOTING:
