@@ -27,10 +27,10 @@ As part of the Web Development course at General Assembly DC.
 ###TECHNICAL DETAILS:
 
 Entity-Relationship Diagrams from development:
-![A photo of the drawing on a whiteboard.][/images/1_erd.jpeg]
+[./images/1_erd.jpeg]
 
 Game Wireframes:
-![A photo of interrelated wireframes on a whiteboard.][/images/1_wireframe.jpeg]
+[./images/1_wireframe.jpeg]
 
 
 

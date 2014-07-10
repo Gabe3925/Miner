@@ -1,0 +1,17 @@
+<div class="header">
+  <div class="nav_block">
+    <% if logged_in? %>
+      <div class="log">
+        <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
+          Logged in as <%= link_to current_user.name, current_user %>
+          <%= f.submit "Log out", id: 'logout' %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="log">
+        <%= link_to "Log In", login_path %> | <%= link_to "Sign up", signup_path %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
