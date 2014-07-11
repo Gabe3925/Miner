@@ -1,0 +1,149 @@
+<!-- game goes here -->
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+<script src="phaser.js"></script>
+<script src="game.js"></script>
+<script>
+
+var seconds = 0;
+var score = 0;
+var scoreText;
+var depth = 0;
+var depthText;
+
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+
+  game.load.image('cave', '<%= asset_path("cave.png") %>');
+  game.load.image('stone', '<%= asset_path("stone.jpg") %>');
+  game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+  game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
+  game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+}
+
+function create() {
+
+   //  A simple background for the mine
+   game.add.sprite(0, 0, 'cave');
+   //  The rocks group is comprised of all the stones which make the mine wall
+   rocks = game.add.group();
+   // Create sounds for mining
+   effort = game.add.audio('effort', 1, false);
+   axeStrike = game.add.audio('axe_strike', 1, false);
+   //  Here we'll create 12 rocks spaced apart
+   for (var i = 0; i < 12; i++)
+   {
+       //  Now let's create a rock
+       var aRock = rocks.create((i * 100)-100, -100, 'stone');
+       aRock.body.immovable = true;
+        var aRock = rocks.create((i * 100)-100, 150, 'stone');
+       aRock.body.immovable = true;
+        var aRock = rocks.create((i * 100)-100, 370, 'stone');
+       aRock.body.immovable = true;
+   }
+   // The player-sprite and its location
+   player = game.add.sprite(100, 100, 'miner');
+
+   //  The two animations, mining left and right.
+   player.animations.add('left', [0, 1, 2], 10, true);
+   player.animations.add('right', [3, 4, 5], 10, true);
+
+   //  Score
+   scoreText = game.add.text(16, 16, 'Funds: $' + score,
+    { fontSize: '32px', fill: '#fff' });
+
+   //  Mine Depth
+   depthText = game.add.text(550, 16, 'Mine Depth:' + depth + 'ft',
+    { fontSize: '32px', fill: '#fff'});
+
+   //  Our controls.
+   cursors = game.input.keyboard.createCursorKeys();
+
+}
+
+function update() {
+
+   // MINE TO THE LEFT
+    if (cursors.left.isDown)
+    {
+
+      //Mining sounds
+      if (axeStrike.isPlaying || effort.isPlaying){
+        console.log('mining left!');
+
+      }
+      else{
+        seconds =  seconds + 1;
+        effort.play();
+        axeStrike.play();
+
+      }
+
+      //Animation
+      player.animations.play('left');
+
+    }
+
+    //  MINE TO THE RIGHT:
+    else if (cursors.right.isDown)
+    {
+
+      //Sounds:
+      if (axeStrike.isPlaying || effort.isPlaying){
+
+        console.log('mining right!');
+
+      }
+      else{
+
+        seconds =  seconds + 1;
+        effort.play();
+        axeStrike.play();
+
+      }
+
+      //Animations:
+      player.animations.play('right');
+
+    }
+
+    //  REST
+    else
+    {
+
+      player.animations.stop();
+      player.frame = 6;
+    }
+
+
+// GAIN POINTS AND DEPTH WITH A PICKAXE;
+  function pickAxe() {
+    if(seconds > 5) {
+
+    //  update the score and depth
+
+      score = score + Math.floor((Math.random() * 10) % 5);
+      scoreText.setText('Funds: $' + score);
+      console.log(score);
+
+      depth = depth + (Math.random() * 1) % 0.9;
+      var depthToDisplay = Math.round(depth*10)/10
+      depthText.setText('Mine Depth: ' + depthToDisplay + 'ft');
+      console.log(depth);
+
+      seconds = seconds - 5;
+      console.log(seconds);
+    }
+  }
+  pickAxe();
+}
+
+</script>
+
+<div class='game-controls'>
+  <p><%= link_to "HQ", user_path %></p>
+</div>

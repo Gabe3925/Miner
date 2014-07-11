@@ -2,14 +2,16 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :sessions, only: [:create]
-  resources :users, :mines
+  resources :users do
+    resources :mines
+  end
   resources :tools, only: [:create]
 
   # Some specified signup, login/out custom routes:
+  get '/store' => 'mines#index'
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   delete '/logout' => 'sessions#destroy'
-
 
 
 

@@ -6,20 +6,6 @@ class Mine < ActiveRecord::Base
     presence: true,
     length: { maximum: 50 }
 
-  # Validate depth:
-  validates :depth,
-    presence: true,
-    numericality: { greater_than_or_equal_to: 0 }
-
-# Validate Richness:
-  validates :description,
-    presence: true,
-    numericality: { greater_than_or_equal_to: -1000 },
-    numericality: { less_than_or_equal_to: 1000 }
-
-    # Validate mine image:
-  validates :image_data,
-    presence: true
 
   # Validates belongs to User,--must belong to user
   validates :user_id,

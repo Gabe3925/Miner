@@ -1,0 +1,36 @@
+<h1>HQ</h1>
+<p>----- <%= @user.name.capitalize %> -----</p>
+
+<p>Funds: $<%= @user.dollars %></p>
+
+<p>Mine: <%= @mine.name %>.</p>
+
+<p>Depth: <%= @mine.depth %> feet</p>
+
+<p>Equipment: <%= @tool.name %></p>
+
+<p><%= link_to "Change Name or Password", edit_user_path(@user) %></p>
+
+<p><%= link_to "Buy Equipment", store_path %></p>
+
+currently broken; wrong path:
+<p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %></p>
+ user_mine_path(@user)
+
+
+----
+
+<div class="nav_block">
+    <% if logged_in? %>
+      <div class="log">
+        <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
+          Logged in as <%= link_to current_user.name, current_user %>
+          <%= f.submit "Log out", id: 'logout' %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="log">
+        <%= link_to "Log In", login_path %> | <%= link_to "Play!", signup_path %>
+      </div>
+    <% end %>
+  </div>

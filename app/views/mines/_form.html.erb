@@ -1,0 +1,30 @@
+<% if @mine.errors.any? %>
+<b>Errors:</b>
+<ul>
+  <% @mine.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<div class="new-mine-form">
+  <%= form_for [@user,@mine] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <p>Depth: <%= @mine.depth %></p>
+
+    <%= f.submit "Submit", id: "submit" %>
+  <% end %>
+</div>
+
+<pre>
+This submit button should be hidden.
+  submission should be tied to either selecting
+  Play or HQ
+</pre>
+
+<!-- Button to go to game -->
+<div class="input">
+  <%= link_to "Start Mining!", users_path %>
+</div>

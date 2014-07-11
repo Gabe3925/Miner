@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_login, except: [:new, :create]
+  before_action :require_login, except: [:index, :new, :create]
   before_action :find_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_current_user, except: [:new, :create]
+  before_action :require_current_user, except: [:index, :new, :create]
 
-  def index
-    render action: "index"
-  end
+
 
   def new
     @user = User.new
@@ -15,17 +13,24 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      # redirect_to @user
-      render action: "index"
+      redirect_to new_user_mine_path(@user)
+
     else
       render :new
     end
   end
 
   def show
+    @user = User.find(params[:id])
+    @mine = @user.mines.first
+    @tool = @user.tools.first
   end
 
   def edit
+  end
+
+  def store
+    render 'store'
   end
 
   def update
@@ -50,7 +55,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :name,
-      :email,
       :password,
       :password_confirmation
     )
@@ -61,4 +65,5 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
 end

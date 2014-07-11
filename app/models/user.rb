@@ -2,7 +2,8 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   has_many :mines, dependent: :destroy
-  has_many :tools, through: :inventory
+  has_many :inventories
+  has_many :tools, through: :inventories
   include BCrypt
 
   # Add handlers to run when creating and saving
@@ -12,13 +13,8 @@ class User < ActiveRecord::Base
   # Validate name:
   validates :name,
     presence: true,
-    length: { maximum: 50 }
-
-  # Validate email address:
-  validates :email,
-    presence: true,
     uniqueness: { case_sensitive: false },
-    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+    length: { maximum: 50 }
 
   # Secure password features:
   has_secure_password
@@ -42,6 +38,6 @@ class User < ActiveRecord::Base
 
   # Normalize fields for consistency:
   def normalize_fields
-    self.email.downcase!
+    self.name.downcase!
   end
 end
