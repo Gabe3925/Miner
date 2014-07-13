@@ -1,5 +1,5 @@
 class Tool < ActiveRecord::Base
-  has_many :users, through: :inventory
+  belongs_to :user
 
 # Validate name -- Tools each have a name:
   validates :name,

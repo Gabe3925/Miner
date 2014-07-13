@@ -14,17 +14,9 @@
 
     <p>Depth: <%= @mine.depth %></p>
 
-    <%= f.submit "Submit", id: "submit" %>
+    <%= f.submit "Start Mining!", id: "submit" %>
   <% end %>
 </div>
 
-<pre>
-This submit button should be hidden.
-  submission should be tied to either selecting
-  Play or HQ
-</pre>
 
-<!-- Button to go to game -->
-<div class="input">
-  <%= link_to "Start Mining!", users_path %>
-</div>
+

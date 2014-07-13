@@ -11,20 +11,15 @@
 
 <p><%= link_to "Change Name or Password", edit_user_path(@user) %></p>
 
-<p><%= link_to "Buy Equipment", store_path %></p>
-
-currently broken; wrong path:
 <p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %></p>
- user_mine_path(@user)
 
-
-----
+ <p><%= link_to "Buy Equipment", controller: "users", action: "index", id: @user %></p>
 
 <div class="nav_block">
     <% if logged_in? %>
       <div class="log">
         <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
-          Logged in as <%= link_to current_user.name, current_user %>
+          Logged in as: <%= @user.name%>
           <%= f.submit "Log out", id: 'logout' %>
         <% end %>
       </div>

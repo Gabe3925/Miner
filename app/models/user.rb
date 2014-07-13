@@ -1,9 +1,9 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  has_many :mines, dependent: :destroy
-  has_many :inventories
-  has_many :tools, through: :inventories
+  has_many :mines
+  has_many :tools
+
   include BCrypt
 
   # Add handlers to run when creating and saving

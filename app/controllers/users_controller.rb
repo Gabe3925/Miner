@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
   before_action :require_current_user, except: [:index, :new, :create]
 
-
+  # This is the store page:
+  def index
+    @user = User.find(params[:id])
+    @tool = Tool.find(@user.tool_id)
+    @tools = Tool.all
+  end
 
   def new
     @user = User.new
@@ -20,17 +25,41 @@ class UsersController < ApplicationController
     end
   end
 
+  # This is 'Headquarters', HQ...
   def show
     @user = User.find(params[:id])
     @mine = @user.mines.first
-    @tool = @user.tools.first
+    @tool = Tool.find(@user.tool_id)
   end
 
   def edit
   end
 
-  def store
-    render 'store'
+  def update_dollars #UPON EXITING GRAPHIC GAMEPLAY...
+    @user = User.find(params[:id])
+    @new_dollars = params[:dollars]
+    #store to database
+    @user.dollars == @new_dollars
+
+  end
+
+  def update_tool
+
+    # Finds the user...
+    user = User.find(params[:id])
+    #Finds the tool by the id that was sent along in the request...
+    tool = Tool.find(tool_to_buy)
+
+      if user.dollars > tool.price
+        #Deducts this tools cost from users dollars,
+        user.dollars = user.dollars - tool.price
+        #then sets users tool_id to ref this .
+        user.tool_id == tool.id
+      else
+        redirect_to 'store', :flash => { :failure => "You lack sufficient funds!" }
+      end
+
+    redirect_to 'store'
   end
 
   def update

@@ -8,9 +8,10 @@
 <script>
 
 var seconds = 0;
-var score = 0;
+// Score is the dollars from user db:
+var score = <%= @user.dollars.to_json %>;
 var scoreText;
-var depth = 0;
+var depth = <%= @mine.depth.to_json %>;
 var depthText;
 
 
@@ -97,6 +98,7 @@ function update() {
 
         console.log('mining right!');
 
+
       }
       else{
 
@@ -126,9 +128,11 @@ function update() {
 
     //  update the score and depth
 
+      // Adds to initial score (which in turn, was drawn from db...)
       score = score + Math.floor((Math.random() * 10) % 5);
       scoreText.setText('Funds: $' + score);
       console.log(score);
+      //SHOULD PUSH UPDATED SCORE BACK TO DB!!
 
       depth = depth + (Math.random() * 1) % 0.9;
       var depthToDisplay = Math.round(depth*10)/10
@@ -142,8 +146,40 @@ function update() {
   pickAxe();
 }
 
+
+// THE AJAX REQUEST WHICH UPDATES THE USERS
+//MINE DEPTH AND DOLLARS ON CLICKING EXIT-TO-HQ BELOW...
+
+jQuery('#exit-gameplay').on('click change',function(){
+
+//UPDATES MINE DEPTH...
+       $.ajax({
+              type: "GET",
+              url:    "/update_depth", // should be mapped in routes.rb
+              data: {depth: depth},
+              datatype:"html", // check more option
+              success: function(data) {
+                       // handle response data
+                       },
+              async:   true
+        });
+
+       // UPDATES USER FUNDS...
+       $.ajax({
+              type: "GET",
+              url:    "/update_dollars", // should be mapped in routes.rb
+              data: {dollars: score},
+              datatype:"html", // check more option
+              success: function(data) {
+                       // handle response data
+                       },
+              async:   true
+        });
+
+});
+
 </script>
 
-<div class='game-controls'>
+<div class='game-controls' id='exit-gameplay'>
   <p><%= link_to "HQ", user_path %></p>
 </div>
