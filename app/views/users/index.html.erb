@@ -1,35 +1,39 @@
-<% if @user.errors.any? %>
-<b>Errors:</b>
-<ul>
+<!-- STORE -->
+<div class="store-wrapper">
+  <% if @user.errors.any? %>
+  <b>Errors:</b>
+  <ul>
   <% @user.errors.full_messages.each do |msg| %>
   <li><%= msg %></li>
   <% end %>
-</ul>
-<% end %>
+  </ul>
+  <% end %>
 
 
-<div><h2>Welcome back <%= @user.name.capitalize %>!</h2></div>
-<div>Available funds: <h1>$<%= @user.dollars %></h1></div>
+  <div><h2>Welcome back <%= @user.name.capitalize %>!</h2></div>
+  <div>Available funds: <h1>$<%= @user.dollars %></h1></div>
 
-<ol>
-  <table>
-<% @tools.each do |tool| %>
+  <ol>
+    <table>
+  <% @tools.each do |tool| %>
 
-  <tr>
-    <td width="200px">
-    <li><%= tool.name %>
-    </td>
-    <td width="100px">
-    $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
-    </td>
-    <td>
-      <%= link_to "Buy Tool", {:controller => :users, :action => :update_tool}, {:method => :put } %>
-    </td>
-  </tr>
-  </li>
-<% end %>
-</table>
-</ol>
+    <tr>
+      <td width="200px">
+      <li><%= tool.name %>
+      </td>
+      <td width="100px">
+      $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
+      </td>
+      <td>
+        <%= link_to "Buy Tool", {:controller => :users, :action => :update_tool}, {:method => :put } %>
+      </td>
+    </tr>
+    </li>
+  <% end %>
+  </table>
+  </ol>
 
-<p><%= link_to "Return to HQ", user_path %></p>
+  <p><%= link_to "Return to HQ", user_path %><img src="<%= asset_path("mine_door.png") %>" id="logo"></a>
+</p>
+</div>
 

@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require rails
 //= require phaser
 //= require game

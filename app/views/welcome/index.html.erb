@@ -1,14 +1,22 @@
+<!-- GAME LANDING PAGE -->
+<div class="wrapper">
 
-( MINE LOGO HERE )
+  <audio autoplay="autoplay" loop="loop">
+    <source src="<%= asset_path("quiet_cave.mp3") %>" type="audio/mpeg">
+    <source src="<%= asset_path("quiet_cave.ogg") %>" type="audio/ogg">
+    <embed height="5" width="10" src="<%= asset_path("quiet_cave.mp3") %>">
+    Your browser does not support game music.
+  </audio>
 
-
+  <img src="<%= asset_path("miner_logo.png") %>" id="logo">
 
   <div class="nav_block">
     <% if logged_in? %>
       <div class="log">
         <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
-          Logged in as <%= link_to current_user.name, current_user %>
-          <%= f.submit "Log out", id: 'logout' %>
+          Logged-In: <%= link_to current_user.name.capitalize, current_user %>
+          <%= f.submit "Log out", id: "logout" %>
+          <%= link_to "Log Out", logout_path, :method => :delete, id: "logout" %>
         <% end %>
       </div>
     <% else %>
@@ -17,6 +25,10 @@
       </div>
     <% end %>
   </div>
+
+</div>
+
+
 
 
 

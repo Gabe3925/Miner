@@ -1,26 +1,55 @@
-<h1>HQ</h1>
-<p>----- <%= @user.name.capitalize %> -----</p>
+<div class="hq-wrapper">
 
-<p>Funds: $<%= @user.dollars %></p>
+  <audio autoplay="autoplay" loop="loop">
+    <source src="<%= asset_path("quiet_cave.mp3") %>" type="audio/mpeg">
+    <source src="<%= asset_path("quiet_cave.ogg") %>" type="audio/ogg">
+    <embed height="5" width="10" src="<%= asset_path("quiet_cave.mp3") %>">
+    Your browser does not support game music.
+  </audio>
 
-<p>Mine: <%= @mine.name %>.</p>
+  <!-- SMALL GAME LOGO ON RIGHT -->
+  <img src="<%= asset_path("miner_logo.png") %>" id="mini-logo">
 
-<p>Depth: <%= @mine.depth %> feet</p>
+  <!-- GEM LOGO WITH NAME  -->
+  <div id="hq">
+    <h1 id="hq-name"><%= @user.name.capitalize %></h1>
+  </div>
 
-<p>Equipment: <%= @tool.name %></p>
+ <!--  PLAYER STATS -->
+  <div class="stats">
+    <table>
+      <tr>
+        <td><p id='stat-detail'>Miner:</td><td> <%= @user.name.capitalize %></td></tr>
+      <tr>
+        <td><p id='stat-detail'>Funds:</td><td> $<%= @user.dollars %></td></tr>
+      <tr>
+        <td><p id='stat-detail'>Mine Name:</td><td> <%= @mine.name %>.</td></tr>
+      <tr>
+        <td><p id='stat-detail'>Depth:</td><td> <%= @mine.depth %> feet</td></tr>
+      <tr>
+        <td><p id='stat-detail'>Equipment:</td> <td><%= @tool.name %></td></tr>
+      </table>
+  </div>
 
-<p><%= link_to "Change Name or Password", edit_user_path(@user) %></p>
+  <div>
+    <p><%= link_to "Change Name or Password", edit_user_path(@user) %></p>
+  </div>
 
-<p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %></p>
+  <div>
+    <p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %><img src="<%= asset_path("shovel.png") %>" width=10%></a></p>
+  </div>
 
- <p><%= link_to "Buy Equipment", controller: "users", action: "index", id: @user %></p>
+  <div>
+    <p><%= link_to "Buy Equipment", controller: "users", action: "index", id: @user %><img src="<%= asset_path("sack.png") %>" width=10%></a></p>
+  </div>
 
-<div class="nav_block">
+
+  <div class="nav_block">
     <% if logged_in? %>
       <div class="log">
         <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
-          Logged in as: <%= @user.name%>
           <%= f.submit "Log out", id: 'logout' %>
+          <%= link_to "Quit", logout_path, :method => :delete, id: "logout" %><img src="<%= asset_path("mine_door.png") %>" width=10%></a>
         <% end %>
       </div>
     <% else %>
@@ -29,3 +58,5 @@
       </div>
     <% end %>
   </div>
+
+</div>

@@ -1,0 +1,145 @@
+body
+{
+  background: black;
+  color: white;
+  font-size: 20px;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  text-indent: 0;
+  text-shadow: 1px 1px 0px #cd8a15;
+}
+
+.game-div
+{
+  margin-left: 100px;
+}
+
+.wrapper
+{
+  background: url(<%= asset_path('rock_face.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border: 0px ;
+  border-radius: 300px;
+  -moz-box-shadow:inset 0px 0px 60px 30px #000;
+  -webkit-box-shadow:inset 0px 0px 60px 30px #000;
+  box-shadow:inset 0px 0px 60px 30px #000;
+  margin: 5% 20% 5% 20%;
+  padding: 15px;
+  height: 400px;
+  width: 600px;
+}
+
+
+/*FOR HEADQUARTERS...*/
+.hq-wrapper
+{
+  background: url(<%= asset_path('rock_face.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border: 0px ;
+  border-radius: 80px;
+  -moz-box-shadow:inset 0px 0px 60px 30px #000;
+  -webkit-box-shadow:inset 0px 0px 60px 30px #000;
+  box-shadow:inset 0px 0px 60px 30px #000;
+  margin: 20px 20px 40px 100px;
+  padding: 15px;
+  height: 90%;
+  width: 700px;
+}
+
+#mini-logo
+{
+  width: 200px;
+  float: right;
+}
+
+#hq
+{
+  background: url(<%= asset_path("big_diamond.png") %>) rgba(0,0,0,0) center;
+  background-size: 200px;
+  background-repeat: no-repeat;
+  color: black;
+  height: 220px;
+  padding-top: 30px;
+  padding-left: 70px;
+  font-size: 120%;
+  width: 200px;
+}
+
+.stats
+{
+ background:rgba(0,0,0,0.5);
+ border-radius: 20px;
+ margin: 30px;
+ padding: 15px;
+ width: 50%;
+}
+
+#stat-detail:hover
+{
+  color: yellow;
+}
+
+/*FOR THE STORE*/
+.store-wrapper
+{
+  background: url(<%= asset_path('rock_face.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border: 0px ;
+  border-radius: 80px;
+  -moz-box-shadow:inset 0px 0px 60px 30px #000;
+  -webkit-box-shadow:inset 0px 0px 60px 30px #000;
+  box-shadow:inset 0px 0px 60px 30px #000;
+  margin: 20px 20px 40px 100px;
+  padding: 30px;
+  padding-left: 100px;
+  height: 90%;
+  width: 700px;
+}
+
+/*FOR IN-GAME GRAPHIC MENU*/
+#link-to-hq
+{
+  float: right;
+}
+
+a {
+  -moz-box-shadow:inset 0px 1px 0px 0px #fed897;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #fed897;
+  box-shadow:inset 0px 1px 0px 0px #fed897;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6b33d), color-stop(1, #d29105) );
+  background:-moz-linear-gradient( center top, #f6b33d 5%, #d29105 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6b33d', endColorstr='#d29105');
+  background-color:#f6b33d;
+  border-radius: 10px;
+  border:1px solid #eda933;
+  display:inline-block;
+  height: auto;
+  color:#ffffff;
+  font-family:Arial Black;
+  font-size:20px;
+  font-weight:bold;
+  font-style:normal;
+  margin: 10px;
+  padding: 15px;
+  text-decoration:none;
+  text-align:center;
+  text-indent:0;
+  text-shadow:1px 1px 0px #cd8a15;
+  width: auto;
+}
+a:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d29105), color-stop(1, #f6b33d) );
+  background:-moz-linear-gradient( center top, #d29105 5%, #f6b33d 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d29105', endColorstr='#f6b33d');
+  background-color:#d29105;
+  font-size: 105%;
+}
+a:active {
+  position:relative;
+  top:1px;
+}
+
+
