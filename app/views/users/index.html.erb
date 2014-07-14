@@ -1,5 +1,14 @@
 <!-- STORE -->
+
 <div class="store-wrapper">
+
+   <audio autoplay="autoplay" loop="loop">
+    <source src="<%= asset_path("store.mp3") %>" type="audio/mpeg">
+    <source src="<%= asset_path("store.ogg") %>" type="audio/ogg">
+    <embed height="5" width="10" src="<%= asset_path("store.mp3") %>">
+    Your browser does not support game music.
+  </audio>
+
   <% if @user.errors.any? %>
   <b>Errors:</b>
   <ul>
@@ -9,31 +18,38 @@
   </ul>
   <% end %>
 
+  <!-- STORE LOGO -->
+  <img src="<%= asset_path("store_sign.png") %>" id="store-logo">
 
-  <div><h2>Welcome back <%= @user.name.capitalize %>!</h2></div>
-  <div>Available funds: <h1>$<%= @user.dollars %></h1></div>
+  <div class="store-menu">
+    <div><h2>Welcome back <%= @user.name.capitalize %>!</h2></div>
+    <div>Available funds: <h1>$<%= @user.dollars %></h1></div>
+  </div>
 
-  <ol>
-    <table>
-  <% @tools.each do |tool| %>
+  <div class="store-menu">
+    <h3>Inventory</h3>
+    <ol>
+      <table>
+        <% @tools.each do |tool| %>
+            <tr>
+            <td width="200px">
+              <li><%= tool.name %>
+            </td>
+            <td width="100px">
+              $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
+            </td>
+            <td>
+              <%= link_to "Buy Tool", {:controller => :users, :action => :update_tool}, {:method => :put } %></li>
+            </td>
+            </tr>
+        <% end %>
+      </table>
+    </ol>
+    <img src="<%= asset_path("sack.png") %>">
+</div>
 
-    <tr>
-      <td width="200px">
-      <li><%= tool.name %>
-      </td>
-      <td width="100px">
-      $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
-      </td>
-      <td>
-        <%= link_to "Buy Tool", {:controller => :users, :action => :update_tool}, {:method => :put } %>
-      </td>
-    </tr>
-    </li>
-  <% end %>
-  </table>
-  </ol>
 
-  <p><%= link_to "Return to HQ", user_path %><img src="<%= asset_path("mine_door.png") %>" id="logo"></a>
+  <p><%= link_to "Return to HQ", user_path %><img src="<%= asset_path("mine_door.png") %>" id="logo" width=20%></a>
 </p>
 </div>
 
