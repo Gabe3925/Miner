@@ -1,3 +1,5 @@
+require 'pry'
+
 class UsersController < ApplicationController
   before_action :require_login, except: [:index, :new, :create]
   before_action :find_user, only: [:show, :edit, :destroy]
@@ -37,10 +39,12 @@ class UsersController < ApplicationController
   end
 
   def update_dollars
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     new_dollars = params[:updatedFunds]
     #store to database
+    binding.pry
     @user.dollars<<new_dollars
+
   end
 
   # def update_tool

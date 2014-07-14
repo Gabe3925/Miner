@@ -179,11 +179,16 @@ function update() {
 
 // });
 
+
+
 function updateScore() {
   console.log(score);
 
 $.ajax({
     type: 'PATCH',
+    headers: {
+    'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+  },
     url: '<%= update_dollars_path %>',
     data: {
       'updatedFunds' : score
