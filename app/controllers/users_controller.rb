@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
+
     @user = User.find(params[:id])
     new_dollars = params[:dollars]
     #store to database
