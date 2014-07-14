@@ -143,6 +143,7 @@ function update() {
       score = score + Math.floor((Math.random() * 10)* toolSpeed % 5);
       scoreText.setText('Funds: $' + score);
       console.log(score);
+
       //SHOULD PUSH UPDATED SCORE BACK TO DB!!
 
       // Adds to initial depth...
@@ -153,6 +154,7 @@ function update() {
       console.log(depth);
 
       seconds = seconds - 5;
+      updateScore();
       console.log(seconds);
     }
   }
@@ -160,47 +162,43 @@ function update() {
 }
 
 
-// THE AJAX REQUEST WHICH UPDATES THE USERS
-//MINE DEPTH AND DOLLARS ON CLICKING EXIT-TO-HQ BELOW...
 
-// jQuery('#link-to-hq').on('click',function(){
+// $("#link-to-hq").click(function(){
 
-// //UPDATES MINE DEPTH...
-//        $.ajax({
-//               type: "POST",
-//               // in mines controller...
-//               url:    "/update_depth", // should be mapped in routes.rb
-//               data: {depth: depth},
-//               datatype:"html", // check more option
-
-//               async:   true
-//         });
-
-//        // UPDATES USER FUNDS...
-//        test = $.ajax({
-//               type: "POST",
-//               // in user controller
-//               url:    "/update_dollars", // should be mapped in routes.rb
-//               data: {dollars: score},
-//               datatype:"html", // check more option
-//               async:   true
-//         });
-
+//   var test = $.ajax({
+//     type: 'PATCH',
+//     url: '<%= update_dollars_path %>',
+//     data: {
+//       'updatedFunds' : score
+//     },
+//     success: function(data){
+//       console.log(data);
+//       debugger
+//     }
+//   });
 
 // });
 
-$("#link-to-hq").click(function(){
-  test = $.ajax({
-              type: "PATCH",
-              url:    "/users/<%= @user.id %>",
-              data: {dollars: score},
-              datatype:"json",
-              async: true
-            });
-});
+function updateScore() {
+  console.log(score);
+
+$.ajax({
+    type: 'PATCH',
+    url: '<%= update_dollars_path %>',
+    data: {
+      'updatedFunds' : score
+    }
+
+  });
+
+};
 
 
 </script>
+
+
+
+
 
   <p><%= link_to "Home", user_path(@user), id: 'link-to-hq' %><img src="<%= asset_path("big_diamond.png") %>" width=5% align="right"></a></p>
 

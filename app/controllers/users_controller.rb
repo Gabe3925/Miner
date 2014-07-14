@@ -36,32 +36,31 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def update
-
+  def update_dollars
     @user = User.find(params[:id])
-    new_dollars = params[:dollars]
+    new_dollars = params[:updatedFunds]
     #store to database
     @user.dollars<<new_dollars
   end
 
-  def update_tool
+  # def update_tool
 
-    # Finds the user...
-    user = User.find(params[:id])
-    #Finds the tool by the id that was sent along in the request...
-    tool = Tool.find(tool_to_buy)
+  #   # Finds the user...
+  #   user = User.find(params[:id])
+  #   #Finds the tool by the id that was sent along in the request...
+  #   tool = Tool.find(tool_to_buy)
 
-      if user.dollars > tool.price
-        #Deducts this tools cost from users dollars,
-        user.dollars = user.dollars - tool.price
-        #then sets users tool_id to ref this .
-        user.tool_id == tool.id
-      else
-        redirect_to 'store', :flash => { :failure => "You lack sufficient funds!" }
-      end
+  #     if user.dollars > tool.price
+  #       #Deducts this tools cost from users dollars,
+  #       user.dollars = user.dollars - tool.price
+  #       #then sets users tool_id to ref this .
+  #       user.tool_id == tool.id
+  #     else
+  #       redirect_to 'store', :flash => { :failure => "You lack sufficient funds!" }
+  #     end
 
-    redirect_to 'store'
-  end
+  #   redirect_to 'store'
+  # end
 
   def update
     if @user.update(user_params)

@@ -46,3 +46,5 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
 end
+
+gem 'rails_12factor', group: :production
