@@ -8,19 +8,20 @@
 <% end %>
 
 <div class="new_user_form">
+  <ul>
   <%= form_for @user do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <li><%= f.label :name %>
+    <%= f.text_field :name %></li>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <li><%= f.label :password %>
+    <%= f.password_field :password %></li>
 
-    <%= f.label :password_confirmation, 'Confirm Password' %>
-    <%= f.password_field :password_confirmation %>
+    <li><%= f.label :password_confirmation, 'Confirm Password' %>
+    <%= f.password_field :password_confirmation %></li>
 
-    <%= f.submit "Submit", id: 'submit' %>
+    <li><%= f.submit "Submit", id: 'submit' %>
+    my button:
+    <%= link_to "Submit Info", 'update' %></li>
   <% end %>
-  This submit button should be hidden.
-  submission should be tied to either selecting
-  Play or HQ
+  </ul>
 </div>

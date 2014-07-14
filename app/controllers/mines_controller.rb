@@ -9,7 +9,6 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
     @user = User.find(params[:user_id])
     # @mine = @user.mines.new
     @mine = Mine.new
-
   end
 
   def create
@@ -26,6 +25,7 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
   def show
     @user = User.find(params[:user_id])
     @mine = @user.mines.first
+    @tool = Tool.find(@user.tool_id)
   end
 
   def edit
@@ -36,15 +36,17 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
     redirect_to @mine
   end
 
-  def update_mine_depth #UPON EXITING GRAPHIC GAMEPLAY...
+  def update_depth #UPON EXITING GRAPHIC GAMEPLAY...
+
     #find user
-    @user = User.find(params[:id])
+    user = User.find(params[:id])
+
     #find mine based on user
-    @mine = @user.mines.first
-    #get new depth from params
-    @new_depth = params[:depth]
-    #store to database
-    @mine.depth == @new_depth
+    @mine = user.mines.first
+
+    newdepth = Request.Form("new_depth")
+    @mine.depth<<newdepth
+
   end
 
   def destroy

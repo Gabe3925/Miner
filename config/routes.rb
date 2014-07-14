@@ -33,5 +33,4 @@ Rails.application.routes.draw do
   #special route to HQ
   get '/users/:id/mines/:mine_id' => 'users#show'
 
-
 end

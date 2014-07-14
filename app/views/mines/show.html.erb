@@ -6,22 +6,24 @@
   <embed height="5" width="10" src="<%= asset_path("drippy_cave.mp3") %>">
 </audio>
 
-
+<!-- INCLUDES ALL SCRIPT FILES, FOR USE IN THIS GAME -->
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 
-<script src="phaser.js"></script>
-<script src="game.js"></script>
 
-<div class="game-div">
 <script>
 
 var seconds = 0;
 // Score is the dollars from user db:
 var score = <%= @user.dollars.to_json %>;
 var scoreText;
+//Depth from user mine in db
 var depth = <%= @mine.depth.to_json %>;
 var depthText;
+//Tool speed for the tool which current user has equipped
+// ( used as a depth-rate and point-rate modifier below)
+var toolSpeed = <%= @tool.speed.to_json %>;
+
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
@@ -137,12 +139,15 @@ function update() {
     //  update the score and depth
 
       // Adds to initial score (which in turn, was drawn from db...)
-      score = score + Math.floor((Math.random() * 10) % 5);
+      // Also takes into account Tool Speed for equipped tool
+      score = score + Math.floor((Math.random() * 10)* toolSpeed % 5);
       scoreText.setText('Funds: $' + score);
       console.log(score);
       //SHOULD PUSH UPDATED SCORE BACK TO DB!!
 
-      depth = depth + (Math.random() * 1) % 0.9;
+      // Adds to initial depth...
+      // Also takes into account Tool Speed for equipped tool
+      depth = depth + (Math.random() * 1)* toolSpeed % 0.9;
       var depthToDisplay = Math.round(depth*10)/10
       depthText.setText('Mine Depth: ' + depthToDisplay + 'ft');
       console.log(depth);
@@ -158,37 +163,44 @@ function update() {
 // THE AJAX REQUEST WHICH UPDATES THE USERS
 //MINE DEPTH AND DOLLARS ON CLICKING EXIT-TO-HQ BELOW...
 
-jQuery('#exit-gameplay').on('click change',function(){
+// jQuery('#link-to-hq').on('click',function(){
 
-//UPDATES MINE DEPTH...
-       $.ajax({
-              type: "GET",
-              url:    "/update_depth", // should be mapped in routes.rb
-              data: {depth: depth},
-              datatype:"html", // check more option
-              success: function(data) {
-                       // handle response data
-                       },
-              async:   true
-        });
+// //UPDATES MINE DEPTH...
+//        $.ajax({
+//               type: "POST",
+//               // in mines controller...
+//               url:    "/update_depth", // should be mapped in routes.rb
+//               data: {depth: depth},
+//               datatype:"html", // check more option
 
-       // UPDATES USER FUNDS...
-       $.ajax({
-              type: "GET",
-              url:    "/update_dollars", // should be mapped in routes.rb
+//               async:   true
+//         });
+
+//        // UPDATES USER FUNDS...
+//        test = $.ajax({
+//               type: "POST",
+//               // in user controller
+//               url:    "/update_dollars", // should be mapped in routes.rb
+//               data: {dollars: score},
+//               datatype:"html", // check more option
+//               async:   true
+//         });
+
+
+// });
+
+$("#link-to-hq").click(function(){
+  test = $.ajax({
+              type: "PATCH",
+              url:    "/users/<%= @user.id %>",
               data: {dollars: score},
-              datatype:"html", // check more option
-              success: function(data) {
-                       // handle response data
-                       },
-              async:   true
-        });
-
+              datatype:"json",
+              async: true
+            });
 });
 
-</script>
-</div>
 
-<!-- <div class='game-controls' id='exit-gameplay'> -->
-  <p><%= link_to "Home", user_path, id: 'link-to-hq' %><img src="<%= asset_path("big_diamond.png") %>" width=5% align="right"></a></p>
-<!-- </div> -->
+</script>
+
+  <p><%= link_to "Home", user_path(@user), id: 'link-to-hq' %><img src="<%= asset_path("big_diamond.png") %>" width=5% align="right"></a></p>
+

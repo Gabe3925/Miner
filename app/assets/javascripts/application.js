@@ -11,9 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require turbolinks
-//= require underscore
-//= require rails
+//= require underscore-min
 //= require phaser
-//= require game
+

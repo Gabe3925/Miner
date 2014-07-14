@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:index, :new, :create]
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :destroy]
   before_action :require_current_user, except: [:index, :new, :create]
 
   # This is the store page:
@@ -27,7 +27,8 @@ class UsersController < ApplicationController
 
   # This is 'Headquarters', HQ...
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    # @user = User.find(params[:user_id])
     @mine = @user.mines.first
     @tool = Tool.find(@user.tool_id)
   end
@@ -35,12 +36,12 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def update_dollars #UPON EXITING GRAPHIC GAMEPLAY...
+  def update
+    binding.pry
     @user = User.find(params[:id])
-    @new_dollars = params[:dollars]
+    new_dollars = params[:dollars]
     #store to database
-    @user.dollars == @new_dollars
-
+    @user.dollars<<new_dollars
   end
 
   def update_tool

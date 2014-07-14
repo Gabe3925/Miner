@@ -1,12 +1,21 @@
-<h1>Edit User Details<%= @user.name %></h1>
-<%= render "user_form" %>
+<div class='hq-wrapper'>
 
-<hr>
+  <audio autoplay="autoplay" loop="loop">
+    <source src="<%= asset_path("quiet_cave.mp3") %>" type="audio/mpeg">
+    <source src="<%= asset_path("quiet_cave.ogg") %>" type="audio/ogg">
+    <embed height="5" width="10" src="<%= asset_path("quiet_cave.mp3") %>">
+    Your browser does not support game music.
+  </audio>
 
-<%= form_for @user, method: 'delete' do |f| %>
-  <%= f.submit "Delete" %>
-<% end %>
+  <!-- SMALL GAME LOGO ON RIGHT -->
+  <img src="<%= asset_path("miner_logo.png") %>" id="mini-logo">
 
-<hr>
+  <h1 id="store-logo">Miner Details</h1>
 
-<%= link_to "Cancel", @user %>
+  <div class='stats'>
+    <%= @user.name.capitalize %>
+    <%= render "user_form" %>
+    <%= link_to "Cancel", @user %>
+  </div>
+
+</div>

@@ -17,6 +17,7 @@ body
   margin-left: 100px;
 }
 
+/*WELCOME LANDING PAGE*/
 .wrapper
 {
   background: url(<%= asset_path('rock_face.jpg') %>) #000000 repeat center;
@@ -30,6 +31,11 @@ body
   padding: 15px;
   height: 400px;
   width: 600px;
+}
+
+#logo
+{
+  margin-left: 30px;
 }
 
 
@@ -70,11 +76,21 @@ body
 
 .stats
 {
- background:rgba(0,0,0,0.5);
- border-radius: 20px;
- margin: 30px;
+ background:rgba(0,0,0,0.4);
+ border: 2px solid black;
+ border-radius: 10px;
+ margin: 50px;
  padding: 15px;
  width: 50%;
+}
+
+#hq-button-wrapper
+{
+ background:rgba(0,0,0,0.6);
+ border-radius: 10px;
+ margin: 50px;
+ padding: 15px;
+ width: 75%;
 }
 
 #stat-detail:hover
@@ -149,11 +165,92 @@ a:hover {
   background:-moz-linear-gradient( center top, #d29105 5%, #f6b33d 100% );
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d29105', endColorstr='#f6b33d');
   background-color:#d29105;
-  font-size: 105%;
+  width: auto + 1;
 }
 a:active {
   position:relative;
   top:1px;
 }
 
+/* Wobble Horizontal */
+@-webkit-keyframes wobble-horizontal {
+  16.65% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+
+  33.3% {
+    -webkit-transform: translateX(-6px);
+    transform: translateX(-6px);
+  }
+
+  49.95% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+  }
+
+  66.6% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+
+  83.25% {
+    -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes wobble-horizontal {
+  16.65% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+
+  33.3% {
+    -webkit-transform: translateX(-6px);
+    transform: translateX(-6px);
+  }
+
+  49.95% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+  }
+
+  66.6% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+
+  83.25% {
+    -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+a {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+a:hover, a:active {
+  -webkit-animation-name: wobble-horizontal;
+  animation-name: wobble-horizontal;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
 

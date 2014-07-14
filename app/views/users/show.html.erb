@@ -1,3 +1,5 @@
+<!-- PLAYER HEADQUARTERS PAGE -->
+
 <div class="hq-wrapper">
 
   <audio autoplay="autoplay" loop="loop">
@@ -19,9 +21,7 @@
   <div class="stats">
     <table>
       <tr>
-        <td><p id='stat-detail'>Miner:</td><td> <%= @user.name.capitalize %></td></tr>
-      <tr>
-        <td><p id='stat-detail'>Funds:</td><td> $<%= @user.dollars %></td></tr>
+        <td><p id='stat-detail'>Funds:</td><td><h1> $<%= @user.dollars %></h1></td></tr>
       <tr>
         <td><p id='stat-detail'>Mine Name:</td><td> <%= @mine.name %>.</td></tr>
       <tr>
@@ -31,32 +31,36 @@
       </table>
   </div>
 
-  <div>
-    <p><%= link_to "Change Name or Password", edit_user_path(@user) %></p>
-  </div>
+  <div id="hq-button-wrapper">
+    <div>
+      <p><%= link_to "Change Name or Password", edit_user_path(@user) %>
+        <img src="<%= asset_path("deed.png") %>" width=10%></a></p>
+    </div>
 
-  <div>
-    <p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %><img src="<%= asset_path("shovel.png") %>" width=10%></a></p>
-  </div>
+    <div>
+      <p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %>
+        <img src="<%= asset_path("shovel.png") %>" width=10%></a></p>
+    </div>
 
-  <div>
-    <p><%= link_to "Buy Equipment", controller: "users", action: "index", id: @user %><img src="<%= asset_path("sack.png") %>" width=10%></a></p>
-  </div>
+    <div>
+      <p><%= link_to "Buy Equipment", controller: "users", action: "index", id: @user %>
+        <img src="<%= asset_path("sack.png") %>" width=10%></a></p>
+    </div>
 
-
-  <div class="nav_block">
-    <% if logged_in? %>
-      <div class="log">
-        <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
-          <%= f.submit "Log out", id: 'logout' %>
-          <%= link_to "Quit", logout_path, :method => :delete, id: "logout" %><img src="<%= asset_path("mine_door.png") %>" width=10%></a>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="log">
-        <%= link_to "Log In", login_path %> | <%= link_to "Play!", signup_path %>
-      </div>
-    <% end %>
+    <div class="nav_block">
+      <% if logged_in? %>
+        <div class="log">
+          <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
+            <%= f.submit "Log out", id: 'logout' %>
+            <%= link_to "Quit Game", logout_path, :method => :delete, id: "logout" %><img src="<%=   asset_path("mine_door.png") %>" width=10%></a>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="log">
+          <%= link_to "Log In", login_path %> | <%= link_to "Play!", signup_path %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 </div>
