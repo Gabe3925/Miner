@@ -25,10 +25,10 @@ Rails.application.routes.draw do
   # get 'users/:id/store/:id' => 'users#purchase'
 
   #updates users dollars upon leaving graphic gameplay...
-  get '/update_dollars' => 'users#update_dollars'
+  patch '/update_dollars' => 'users#update_dollars'
 
   #updates users' mine depth upon leaving graphic gameplay...
-  get '/update_depth' => 'mines#update_depth'
+  patch '/update_depth' => 'mines#update_depth'
 
   #special route to HQ
   get '/users/:id/mines/:mine_id' => 'users#show'

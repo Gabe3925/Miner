@@ -32,10 +32,6 @@
   </div>
 
   <div id="hq-button-wrapper">
-    <div>
-      <p><%= link_to "Change Name or Password", edit_user_path(@user) %>
-        <img src="<%= asset_path("deed.png") %>" width=10%></a></p>
-    </div>
 
     <div>
       <p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %>
@@ -46,6 +42,12 @@
       <p><%= link_to "Buy Equipment", controller: "users", action: "index", id: @user %>
         <img src="<%= asset_path("sack.png") %>" width=10%></a></p>
     </div>
+
+    <div>
+      <p><%= link_to "Change Name or Password", edit_user_path(@user) %>
+        <img src="<%= asset_path("deed.png") %>" width=10%></a></p>
+    </div>
+
 
     <div class="nav_block">
       <% if logged_in? %>
