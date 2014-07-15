@@ -45,6 +45,8 @@ function preload() {
   game.load.image('cave', '<%= asset_path("cave.png") %>');
   game.load.image('stone', '<%= asset_path("stone.jpg") %>');
   game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+  game.load.spritesheet('shoveller', '<%= asset_path("shovel_sprite.png")%>',652,600,7);
+  game.load.spritesheet('driller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
   game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
   game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
 }
@@ -61,7 +63,7 @@ function create() {
    //  Here we'll create 12 rocks spaced apart
    for (var i = 0; i < 12; i++)
    {
-       //  Now let's create a rock
+       //  Create three rows of the rock wall
        var aRock = rocks.create((i * 100)-100, -100, 'stone');
        aRock.body.immovable = true;
         var aRock = rocks.create((i * 100)-100, 150, 'stone');
@@ -69,12 +71,66 @@ function create() {
         var aRock = rocks.create((i * 100)-100, 370, 'stone');
        aRock.body.immovable = true;
    }
-   // The player-sprite and its location
-   player = game.add.sprite(100, 100, 'miner');
 
-   //  The two animations, mining left and right.
-   player.animations.add('left', [0, 1, 2], 10, true);
-   player.animations.add('right', [3, 4, 5], 10, true);
+  switch (<%= @tool.id.to_json %>) {
+  case 1:
+    // The pickaxe player-sprite and its location
+     player = game.add.sprite(100, 100, 'miner');
+
+    //  The two pickaxe animations, mining left and right.
+    player.animations.add('left', [0, 1, 2], 10, true);
+    player.animations.add('right', [3, 4, 5], 10, true);
+  break;
+
+  case 2:
+    // The shovel player-sprite and its location
+   player = game.add.sprite(100, 100, 'shoveller');
+
+   //  The shovelling animation, mining left and right.
+   player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
+   player.animations.add('right', [0, 1, 2, 3, 4, 5], 10, true);
+  break;
+
+  case 3:
+    // The pneumatic drill player-sprite and its location
+   player = game.add.sprite(170, 100, 'driller');
+   player.scale.setTo(.7, .7);
+
+   //  The pneumatic drill animation, mining left and right.
+   player.animations.add('left', [1, 2, 3], 10, true);
+   player.animations.add('right', [3, 2, 1], 10, true);
+  break;
+
+  case 4:
+    // The power drill player-sprite and its location
+   player = game.add.sprite(100, 100, 'powerDriller');
+
+   //  The power drill animation, mining left and right.
+   player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
+   player.animations.add('right', [0, 1, 2, 3, 4, 5], 10, true);
+  break;
+
+  case 5:
+    // The borer machine player-sprite and its location
+   player = game.add.sprite(100, 100, 'borer');
+
+   //  The boring animation LOL.
+   player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
+   player.animations.add('right', [0, 1, 2, 3, 4, 5], 10, true);
+  break;
+
+  default:
+    // DEFAULT: The pickaxe player-sprite and its location
+     player = game.add.sprite(100, 100, 'miner');
+
+    //  The two pickaxe animations, mining left and right.
+    player.animations.add('left', [0, 1, 2], 10, true);
+    player.animations.add('right', [3, 4, 5], 10, true);
+  break;
+};
+
+
+
 
    //  Score
    scoreText = game.add.text(16, 16, 'Funds: $' + score,
