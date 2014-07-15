@@ -28,7 +28,7 @@ gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'pry-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -39,9 +39,10 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
-  gem 'pry-rails'
+
   gem 'rspec-rails', '~> 2.14.0'
   gem 'shoulda-matchers'
   gem 'capybara'
 end
 
+ruby "2.1.1"
