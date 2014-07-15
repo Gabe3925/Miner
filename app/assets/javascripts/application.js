@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= jquery_ujs
+//= require jquery_ujs
 //= require turbolinks
 //= require underscore-min
 //= require phaser
