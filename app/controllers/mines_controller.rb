@@ -43,7 +43,8 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
     @mine = user.mines.first
     new_depth = params[:updatedDepth]
     #store to database
-    @mine.depth = new_depth.to_f
+
+    @mine.depth = new_depth
     @mine.save
 
   end

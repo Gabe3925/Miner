@@ -34,7 +34,7 @@
       <tr>
         <td><p id='stat-detail'>Mine Name:</td><td> <%= @mine.name %></td></tr>
       <tr>
-        <td><p id='stat-detail'>Depth:</td><td> <%= number_with_delimiter(@mine.depth, :delimiter => ',') %> feet</td></tr>
+        <td><p id='stat-detail'>Depth:</td><td> <%= number_with_delimiter((@mine.depth*10).ceil / 10.0, :delimiter => ',') %> feet</td></tr>
       <tr>
         <td><p id='stat-detail'>Equipment:</td> <td><%= @tool.name %></td></tr>
       </table>
