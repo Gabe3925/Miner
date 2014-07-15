@@ -10,17 +10,16 @@
 
   <img src="<%= asset_path("miner_logo.png") %>" id="logo">
 
-  <div class="nav_block">
+  <div>
     <% if logged_in? %>
-      <div class="log">
+      <div class="log-current">
         <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
           Logged-In: <%= link_to current_user.name.capitalize, current_user %>
-          <%= f.submit "Log out", id: "logout" %>
-          <%= link_to "Log Out", logout_path, :method => :delete, id: "logout" %>
+          <%= f.submit "Log out", id: "gray-button" %>
         <% end %>
       </div>
     <% else %>
-      <div class="log">
+      <div class="log-unknown">
         <%= link_to "Log In", login_path %> | <%= link_to "Play!", signup_path %>
       </div>
     <% end %>

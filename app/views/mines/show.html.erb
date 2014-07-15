@@ -1,4 +1,4 @@
-<!-- game  -->
+<!-- GAME  -->
 
 <audio autoplay="autoplay" loop="loop">
   <source src="<%= asset_path("drippy_cave.mp3") %>" type="audio/mpeg">
@@ -9,6 +9,16 @@
 <!-- INCLUDES ALL SCRIPT FILES, FOR USE IN THIS GAME -->
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
+<!-- These are divs for the margins & button areas.
+The game floats above these, but is buffered by the margin divs which float -->
+
+  <div class="game-left-margin-div"></div>
+  <div class="game-top-margin-div"></div>
+
+  <!-- BUTTON TO TAKE YOU BACK TO HQ -->
+  <div id="stop-mining">
+    <p><%= link_to "Home", user_path(@user), id: 'link-to-hq' %><img src="<%=   asset_path("sack.png") %>" width=90% align="left"></a></p>
+  </div>
 
 
 <script>
@@ -218,10 +228,3 @@ $.ajax({
 
 
 </script>
-
-
-
-
-
-  <p><%= link_to "Home", user_path(@user), id: 'link-to-hq' %><img src="<%= asset_path("big_diamond.png") %>" width=5% align="right"></a></p>
-

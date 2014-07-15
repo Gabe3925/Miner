@@ -12,10 +12,75 @@ body
   text-shadow: 1px 1px 0px #cd8a15;
 }
 
-.game-div
+
+
+/*FOR THE GRAPHIC GAMEPLAY SECTION:*/
+.game-left-margin-div
 {
-  margin-left: 100px;
+  border: 0px;
+  float: left;
+  height: 200px;
+  width: 9%;
 }
+
+.game-top-margin-div
+{
+  border: 0px;
+  float: top;
+  height: 20px;
+}
+
+
+#stop-mining
+{
+  background: url(<%= asset_path('diamond_plate.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border-top: 5px solid white;
+  border-left: 5px solid lightgray;
+  border-right: 5px solid darkgray;
+  border-bottom: 5px solid gray;
+  border-radius: 10px;
+  float: right;
+  height: 200px;
+  margin-top: 0px;
+  margin-right: 5%;
+  padding: 10px;
+  padding-left: 35px;
+  width: 90px;
+}
+
+/*FOR LANDING/LOGO PAGE:*/
+.log-unknown
+{
+  background: url(<%= asset_path('diamond_plate.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border-top: 5px solid white;
+  border-left: 5px solid lightgray;
+  border-right: 5px solid darkgray;
+  border-bottom: 5px solid gray;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  margin-left: 110px;
+  padding: 10px;
+  padding-left: 35px;
+  width: 300px;
+}
+.log-current
+{
+  background: url(<%= asset_path('diamond_plate.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border-top: 5px solid white;
+  border-left: 5px solid lightgray;
+  border-right: 5px solid darkgray;
+  border-bottom: 5px solid gray;
+  border-radius: 10px;
+  margin-left: 30px;
+  margin-bottom: 40px;
+  padding: 10px;
+  padding-left: 50px;
+  width: 450px;
+}
+
 
 /*RETURNING USER LOGIN WINDOW*/
 .login
@@ -33,6 +98,14 @@ body
   width: 800px;
 }
 
+/*NEW MINE FORM*/
+.new-mine-form
+{
+  margin-top: 150px;
+  margin-left: 120px;
+  width: 600px;
+}
+
 /*WELCOME LANDING PAGE*/
 .wrapper
 {
@@ -43,7 +116,7 @@ body
   -moz-box-shadow:inset 0px 0px 60px 30px #000;
   -webkit-box-shadow:inset 0px 0px 60px 30px #000;
   box-shadow:inset 0px 0px 60px 30px #000;
-  margin: 5% 20% 5% 20%;
+  margin: 5% 20% 5% 21%;
   padding: 15px;
   height: 400px;
   width: 600px;
@@ -52,6 +125,12 @@ body
 #logo
 {
   margin-left: 30px;
+}
+
+#login-submit-button-div
+{
+margin-left: 180px;
+margin-top: 80px;
 }
 
 
@@ -65,7 +144,7 @@ body
   -moz-box-shadow:inset 0px 0px 60px 30px #000;
   -webkit-box-shadow:inset 0px 0px 60px 30px #000;
   box-shadow:inset 0px 0px 60px 30px #000;
-  margin: 20px 20px 40px 100px;
+  margin: auto;
   padding: 15px;
   height: 90%;
   width: 700px;
@@ -152,7 +231,7 @@ body
   -moz-box-shadow:inset 0px 0px 60px 30px #000;
   -webkit-box-shadow:inset 0px 0px 60px 30px #000;
   box-shadow:inset 0px 0px 60px 30px #000;
-  margin: 20px 20px 40px 100px;
+  margin: auto;
   padding: 30px;
   padding-left: 100px;
   height: 90%;
@@ -337,70 +416,6 @@ button:active {
   top:1px;
 }
 
-/* Wobble Horizontal */
-@-webkit-keyframes wobble-horizontal {
-  16.65% {
-    -webkit-transform: translateX(8px);
-    transform: translateX(8px);
-  }
-
-  33.3% {
-    -webkit-transform: translateX(-6px);
-    transform: translateX(-6px);
-  }
-
-  49.95% {
-    -webkit-transform: translateX(4px);
-    transform: translateX(4px);
-  }
-
-  66.6% {
-    -webkit-transform: translateX(-2px);
-    transform: translateX(-2px);
-  }
-
-  83.25% {
-    -webkit-transform: translateX(1px);
-    transform: translateX(1px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
-
-@keyframes wobble-horizontal {
-  16.65% {
-    -webkit-transform: translateX(8px);
-    transform: translateX(8px);
-  }
-
-  33.3% {
-    -webkit-transform: translateX(-6px);
-    transform: translateX(-6px);
-  }
-
-  49.95% {
-    -webkit-transform: translateX(4px);
-    transform: translateX(4px);
-  }
-
-  66.6% {
-    -webkit-transform: translateX(-2px);
-    transform: translateX(-2px);
-  }
-
-  83.25% {
-    -webkit-transform: translateX(1px);
-    transform: translateX(1px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
 
 button {
   display: inline-block;
@@ -419,4 +434,61 @@ button:hover, button:active {
   animation-iteration-count: 1;
 }
 
+/*Throughout game, gray buttons that I could not replace myself:
+*/
+#gray-button
+{
+  -moz-box-shadow:inset 0px 1px 0px 0px #fed897;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #fed897;
+  box-shadow:inset 0px 1px 0px 0px #fed897;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6b33d), color-stop(1, #d29105) );
+  background:-moz-linear-gradient( center top, #f6b33d 5%, #d29105 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6b33d', endColorstr='#d29105');
+  background-color:#f6b33d;
+  border-radius: 10px;
+  border:1px solid #eda933;
+  display:inline-block;
+  height: auto;
+  color:#ffffff;
+  font-family:Arial Black;
+  font-size:20px;
+  font-weight:bold;
+  font-style:normal;
+  margin: 10px;
+  padding: 15px;
+  text-decoration:none;
+  text-align:center;
+  text-indent:0;
+  text-shadow:1px 1px 0px #cd8a15;
+  width: auto;
+}
+#gray-button:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d29105), color-stop(1, #f6b33d) );
+  background:-moz-linear-gradient( center top, #d29105 5%, #f6b33d 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d29105', endColorstr='#f6b33d');
+  background-color:#d29105;
+  width: auto + 1;
+}
+#gray-button:active {
+  position:relative;
+  top:1px;
+}
 
+
+
+#gray-button {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+#gray-button:hover, #gray-button:active {
+  -webkit-animation-name: wobble-horizontal;
+  animation-name: wobble-horizontal;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}

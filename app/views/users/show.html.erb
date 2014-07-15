@@ -62,8 +62,8 @@
       <% if logged_in? %>
         <div class="log">
           <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
-            <%= f.submit "Log out", id: 'logout' %>
-            <%= link_to "Quit Game", logout_path, :method => :delete, id: "logout" %><img src="<%=   asset_path("mine_door.png") %>" width=10%></a>
+            <%= f.submit "Quit Game", id: 'gray-button' %>
+            <img src="<%=   asset_path("mine_door.png") %>" width=10%></a>
           <% end %>
         </div>
       <% else %>

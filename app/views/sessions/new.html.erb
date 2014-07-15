@@ -14,8 +14,9 @@
 
       <%= f.label :password %>
       <%= f.password_field :password %>
-
-      <%= f.submit 'Log In', id: 'login' %>
+      <div id="login-submit-button-div">
+        <%= f.submit 'Log In', id: "gray-button" %>
+      </div>
     <% end %>
   </div>
 </div>

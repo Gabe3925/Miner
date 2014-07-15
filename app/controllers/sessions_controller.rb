@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
     # Test if the user was found AND authenticates
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_back_or root_url
+      redirect_back_or user
     else
-      flash[:error] = 'Invalid name or password'
-      redirect_to new_session_path
+      flash[:error] = 'Incorrect name or password.'
+      redirect_to login_path
     end
   end
 
