@@ -155,29 +155,13 @@ function update() {
 
       seconds = seconds - 5;
       updateScore();
+      updateDepth();
       console.log(seconds);
     }
   }
   pickAxe();
 }
 
-
-
-// $("#link-to-hq").click(function(){
-
-//   var test = $.ajax({
-//     type: 'PATCH',
-//     url: '<%= update_dollars_path %>',
-//     data: {
-//       'updatedFunds' : score
-//     },
-//     success: function(data){
-//       console.log(data);
-//       debugger
-//     }
-//   });
-
-// });
 
 
 
@@ -188,10 +172,33 @@ $.ajax({
     type: 'PATCH',
     headers: {
     'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
-  },
+    },
     url: '<%= update_dollars_path %>',
+    dataType: "JSON",
+    asnyc: false,
     data: {
-      'updatedFunds' : score
+      'updatedFunds' : score,
+      'user_id' : <%= @user.id %>
+    }
+
+  });
+
+};
+
+function updateDepth() {
+  console.log(depth);
+
+$.ajax({
+    type: 'PATCH',
+    headers: {
+    'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+    },
+    url: '<%= update_depth_path %>',
+    dataType: "JSON",
+    asnyc: false,
+    data: {
+      'updatedDepth' : depth,
+      'user_id' : <%= @user.id %>
     }
 
   });

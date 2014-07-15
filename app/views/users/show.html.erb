@@ -20,7 +20,10 @@
 <!-- MAP OF MINE PROGRESS -->
   <div class="map">
     Progress:
-     <img src="<%= asset_path("mine-pixel.png") %>" id="mine-progress-image">
+     <img src="<%= asset_path("mine-pixel.png") %>" id="mine-progress-image"
+     height="<%= @mine.depth/44495 %>px" width="4px">
+     <!-- 8.42 (44495 ft) miles per pixel (213 pixels in that image) 1795 miles to the
+     border of the molten core (bottom of image). -->
   </div>
 
  <!--  PLAYER STATS -->

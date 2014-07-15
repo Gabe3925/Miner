@@ -3,7 +3,7 @@ require 'pry'
 class UsersController < ApplicationController
   before_action :require_login, except: [:index, :new, :create]
   before_action :find_user, only: [:show, :edit, :destroy]
-  before_action :require_current_user, except: [:index, :new, :create]
+  before_action :require_current_user, except: [:index, :new, :create, :update_dollars, :update_tool]
 
   # This is the store page:
   def index
@@ -29,8 +29,7 @@ class UsersController < ApplicationController
 
   # This is 'Headquarters', HQ...
   def show
-    # @user = User.find(params[:id])
-    # @user = User.find(params[:user_id])
+    #user found as before-action
     @mine = @user.mines.first
     @tool = Tool.find(@user.tool_id)
   end
@@ -39,32 +38,28 @@ class UsersController < ApplicationController
   end
 
   def update_dollars
-    # @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     new_dollars = params[:updatedFunds]
     #store to database
-    binding.pry
-    @user.dollars<<new_dollars
-
+    @user.dollars = new_dollars.to_i
+    @user.save
   end
 
-  # def update_tool
+  def update_tool
+    binding.pry
+    @user = User.find(params[:user_id])
+    @tool = Tool.find(params[:toolId])
+    price = @tool.price
 
-  #   # Finds the user...
-  #   user = User.find(params[:id])
-  #   #Finds the tool by the id that was sent along in the request...
-  #   tool = Tool.find(tool_to_buy)
+    # subtract tool price from users dollars
+    @user.dollars = @user.dollars - price
 
-  #     if user.dollars > tool.price
-  #       #Deducts this tools cost from users dollars,
-  #       user.dollars = user.dollars - tool.price
-  #       #then sets users tool_id to ref this .
-  #       user.tool_id == tool.id
-  #     else
-  #       redirect_to 'store', :flash => { :failure => "You lack sufficient funds!" }
-  #     end
+    # re-assign users tool_id reference ID
+    @user.tool_id = @tool.id
 
-  #   redirect_to 'store'
-  # end
+    #store to database
+    @user.save
+  end
 
   def update
     if @user.update(user_params)

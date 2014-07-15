@@ -39,7 +39,8 @@
               $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
             </td>
             <td>
-              <%= link_to "Buy Tool", {:controller => :users, :action => :update_tool}, {:method => :put } %></li>
+              link_to "Buy Tool", :controller => :users, :action => :update_tool, :method => :patch, id: tool.id
+              <a href="" class='buy-tool-button' id='<%=tool.id %>'>Buy Tool</a></li>
             </td>
             </tr>
         <% end %>
@@ -53,3 +54,33 @@
 </p>
 </div>
 
+<script>
+
+
+
+THIS LISTENING EVENT IS BUSTED:
+jQuery.$('buy-tool-button').click(function(){
+  toolId = this.id;
+  buyTool();
+});
+
+function buyTool() {
+  console.log('Hello!');
+
+$.ajax({
+    type: 'PATCH',
+    headers: {
+    'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+    },
+    url: '<%= update_dollars_path %>',
+    dataType: "JSON",
+    asnyc: false,
+    data: {
+      'user_id' : <%= @user.id %>,
+      'toolId' : toolId
+    }
+
+  });
+
+};
+</script>

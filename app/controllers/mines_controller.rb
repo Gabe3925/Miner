@@ -38,14 +38,12 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
 
   def update_depth #UPON EXITING GRAPHIC GAMEPLAY...
 
-    #find user
-    user = User.find(params[:id])
-
-    #find mine based on user
+    user = User.find(params[:user_id])
     @mine = user.mines.first
-
-    newdepth = Request.Form("new_depth")
-    @mine.depth<<newdepth
+    new_depth = params[:updatedDepth]
+    #store to database
+    @mine.depth = new_depth.to_f
+    @mine.save
 
   end
 
