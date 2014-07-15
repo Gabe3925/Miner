@@ -1,4 +1,4 @@
-<div class='hq-wrapper'>
+<div>
 
   <audio autoplay="autoplay" loop="loop">
     <source src="<%= asset_path("quiet_cave.mp3") %>" type="audio/mpeg">
@@ -7,15 +7,10 @@
     Your browser does not support game music.
   </audio>
 
-  <!-- SMALL GAME LOGO ON RIGHT -->
-  <img src="<%= asset_path("miner_logo.png") %>" id="mini-logo">
+  <center><h1>Edit Details</h1></center>
 
-  <h1 id="store-logo">Miner Details</h1>
-
-  <div class='stats'>
-    <%= @user.name.capitalize %>
     <%= render "user_form" %>
     <%= link_to "Cancel", @user %>
-  </div>
+
 
 </div>

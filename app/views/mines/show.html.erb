@@ -15,7 +15,7 @@
 
 var seconds = 0;
 // Score is the dollars from user db:
-var score = "<%= number_with_delimiter(@user.dollars, :delimiter => ',')%>";
+var score = <%= @user.dollars.to_json %>;
 var scoreText;
 //Depth from user mine in db
 var depth = <%= @mine.depth.to_json %>;

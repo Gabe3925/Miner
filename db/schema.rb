@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713171957) do
+ActiveRecord::Schema.define(version: 20140715162431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "mines", force: true do |t|
     t.string   "name"
-    t.integer  "depth"
+    t.integer  "depth",      default: 0
     t.integer  "richness"
     t.string   "image"
     t.integer  "user_id"
@@ -37,14 +37,12 @@ ActiveRecord::Schema.define(version: 20140713171957) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email",           default: "None"
-    t.integer  "dollars"
+    t.integer  "dollars",         default: 0
     t.string   "password_digest"
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "tool_name",       default: "Pick Axe"
-    t.integer  "tool_speed",      default: 1
-    t.integer  "tool_id"
+    t.integer  "tool_id",         default: 1
   end
 
   add_index "users", ["tool_id"], name: "index_users_on_tool_id", using: :btree
