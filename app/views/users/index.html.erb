@@ -1,5 +1,8 @@
 <!-- STORE -->
 
+<!-- INCLUDES ALL SCRIPT FILES, FOR USE ON THIS PAGE -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
 <div class="store-wrapper">
 
    <audio autoplay="autoplay" loop="loop">
@@ -22,7 +25,6 @@
   <img src="<%= asset_path("store_sign.png") %>" id="store-logo">
 
   <div class="store-menu">
-    <div><h2>Welcome back <%= @user.name.capitalize %>!</h2></div>
     <div>Available funds: <h1>$<%= @user.dollars %></h1></div>
   </div>
 
@@ -39,8 +41,8 @@
               $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
             </td>
             <td>
-              link_to "Buy Tool", :controller => :users, :action => :update_tool, :method => :patch, id: tool.id
-              <a href="" class='buy-tool-button' id='<%=tool.id %>'>Buy Tool</a></li>
+
+              <button class='buy-tool-button' id='<%=tool.id %>'>Buy Tool</button></li>
             </td>
             </tr>
         <% end %>
@@ -56,31 +58,46 @@
 
 <script>
 
-
-
-THIS LISTENING EVENT IS BUSTED:
-jQuery.$('buy-tool-button').click(function(){
-  toolId = this.id;
-  buyTool();
-});
-
 function buyTool() {
   console.log('Hello!');
 
-$.ajax({
+  $.ajax({
     type: 'PATCH',
     headers: {
     'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
     },
-    url: '<%= update_dollars_path %>',
+    url: '<%= update_tool_path %>',
     dataType: "JSON",
-    asnyc: false,
+    async: true,
     data: {
       'user_id' : <%= @user.id %>,
       'toolId' : toolId
+    },
+    success: function(){
+      console.log('Hooray!');
+    },
+    error: function(){
+      console.log('Error!');
     }
-
   });
 
+
 };
+
+
+$('.buy-tool-button').click(function(){
+  toolId = this.id;
+  buyTool();
+  location.reload(true);
+  cashRegister.play();
+  window.alert('You purchased a <%= @tool.name %>')
+
+});
+
+$(document).ready(function() {
+  cashRegister = document.createElement("audio");
+  cashRegister.setAttribute("src", "<%= asset_path('register.mp3')%>" );
+  $.get();
+});
+
 </script>

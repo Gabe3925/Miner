@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/users/:id/store' => 'users#index'
 
   # Should update a users tool and decrease dollars upon BUYING at store...
-  patch 'users/:id/store/:id' => 'users#purchase'
+  patch '/update_tool' => 'users#update_tool'
 
   #updates users dollars upon leaving graphic gameplay...
   patch '/update_dollars' => 'users#update_dollars'

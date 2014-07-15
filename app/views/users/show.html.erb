@@ -28,13 +28,13 @@
 
  <!--  PLAYER STATS -->
   <div class="stats">
-    <table>
+    <table id='stats'>
       <tr>
-        <td><p id='stat-detail'>Funds:</td><td><h1> $<%= @user.dollars %></h1></td></tr>
+        <td><p id='stat-detail'>Funds:</td><td><h1> $<%= number_with_delimiter(@user.dollars, :delimiter => ',') %></h1></td></tr>
       <tr>
-        <td><p id='stat-detail'>Mine Name:</td><td> <%= @mine.name %>.</td></tr>
+        <td><p id='stat-detail'>Mine Name:</td><td> <%= @mine.name %></td></tr>
       <tr>
-        <td><p id='stat-detail'>Depth:</td><td> <%= @mine.depth %> feet</td></tr>
+        <td><p id='stat-detail'>Depth:</td><td> <%= number_with_delimiter(@mine.depth, :delimiter => ',') %> feet</td></tr>
       <tr>
         <td><p id='stat-detail'>Equipment:</td> <td><%= @tool.name %></td></tr>
       </table>

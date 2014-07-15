@@ -26,6 +26,7 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
     @user = User.find(params[:user_id])
     @mine = @user.mines.first
     @tool = Tool.find(@user.tool_id)
+    @curr_tool_name = @tool.name
   end
 
   def edit

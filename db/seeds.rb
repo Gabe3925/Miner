@@ -9,16 +9,16 @@
 
 # CREATE TOOLS:
 pickaxe = Tool.create(name: 'Pick Axe', speed: 1, price: 10)
-shovel = Tool.create(name: 'Shovel', speed: 2, price: 500)
-drill = Tool.create(name: 'Pneumatic Drill', speed: 3, price: 4000)
-bigdrill = Tool.create(name: 'Power Drill', speed: 6, price: 8000)
-borer = Tool.create(name: 'Borer Machine', speed: 12, price: 150000)
+shovel = Tool.create(name: 'Shovel', speed: 4, price: 500)
+drill = Tool.create(name: 'Pneumatic Drill', speed: 16, price: 4000)
+bigdrill = Tool.create(name: 'Power Drill', speed: 32, price: 8000)
+borer = Tool.create(name: 'Borer Machine', speed: 100, price: 150000)
 
 #CREATE TEST USER
-gabe = User.create(id: 0, name: 'Gabe', dollars: 81, :password => "gabegabe", :password_confirmation => "gabegabe", :tool_id => "1")
+gabe = User.create(name: 'Gabe', dollars: 50000, :password => "gabegabe", :password_confirmation => "gabegabe", :tool_id => "1")
 
 #CREATE TEST-USERS MINE
-gabe.mines << Mine.create(name: 'Gabes Great Mine', depth: 6)
+gabe.mines << Mine.create(name: 'Gabes Great Mine', depth: 6000)
 
 
 

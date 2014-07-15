@@ -1,7 +1,7 @@
 require 'pry'
 
 class UsersController < ApplicationController
-  before_action :require_login, except: [:index, :new, :create]
+  before_action :require_login, except: [:index, :new, :create, :update_tool]
   before_action :find_user, only: [:show, :edit, :destroy]
   before_action :require_current_user, except: [:index, :new, :create, :update_dollars, :update_tool]
 
@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # Updates dollars as a user mines...
   def update_dollars
     @user = User.find(params[:user_id])
     new_dollars = params[:updatedFunds]
@@ -45,8 +46,9 @@ class UsersController < ApplicationController
     @user.save
   end
 
+  # Updates dollars and tool id when a user goes shopping in 'store'...
   def update_tool
-    binding.pry
+
     @user = User.find(params[:user_id])
     @tool = Tool.find(params[:toolId])
     price = @tool.price
@@ -59,6 +61,16 @@ class UsersController < ApplicationController
 
     #store to database
     @user.save
+
+    #sends a confirmation back to store
+    # I BELIEVE THESE ARE BROKEN?
+    respond_to do |format|
+      format.json { head :ok }
+    end
+
+    # render nothing: true
+    # redirect_to action: "index"
+
   end
 
   def update

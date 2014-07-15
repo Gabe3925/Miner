@@ -15,7 +15,7 @@
 
 var seconds = 0;
 // Score is the dollars from user db:
-var score = <%= @user.dollars.to_json %>;
+var score = "<%= number_with_delimiter(@user.dollars, :delimiter => ',')%>";
 var scoreText;
 //Depth from user mine in db
 var depth = <%= @mine.depth.to_json %>;
@@ -23,7 +23,10 @@ var depthText;
 //Tool speed for the tool which current user has equipped
 // ( used as a depth-rate and point-rate modifier below)
 var toolSpeed = <%= @tool.speed.to_json %>;
-
+var toolSpeedText;
+// Tool is the users current equipped tool:
+var tool = "<%= @curr_tool_name %>";
+var toolText;
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
@@ -68,7 +71,15 @@ function create() {
     { fontSize: '32px', fill: '#fff' });
 
    //  Mine Depth
-   depthText = game.add.text(550, 16, 'Mine Depth:' + depth + 'ft',
+   depthText = game.add.text(500, 16, 'Mine Depth: ' + depth + ' ft',
+    { fontSize: '32px', fill: '#fff'});
+
+   //  Current tool equipped
+   toolText = game.add.text(250, 16, tool,
+    { fontSize: '32px', fill: '#fff'});
+
+    //  tool speed text (for development only)
+   toolSpeedText = game.add.text(250, 32, toolSpeed,
     { fontSize: '32px', fill: '#fff'});
 
    //  Our controls.
@@ -140,7 +151,7 @@ function update() {
 
       // Adds to initial score (which in turn, was drawn from db...)
       // Also takes into account Tool Speed for equipped tool
-      score = score + Math.floor((Math.random() * 10)* toolSpeed % 5);
+      score = score + Math.floor((Math.random() * 10) % 5 * toolSpeed);
       scoreText.setText('Funds: $' + score);
       console.log(score);
 
@@ -148,7 +159,7 @@ function update() {
 
       // Adds to initial depth...
       // Also takes into account Tool Speed for equipped tool
-      depth = depth + (Math.random() * 1)* toolSpeed % 0.9;
+      depth = depth + (Math.random() * 1) % 0.9 * toolSpeed;
       var depthToDisplay = Math.round(depth*10)/10
       depthText.setText('Mine Depth: ' + depthToDisplay + 'ft');
       console.log(depth);

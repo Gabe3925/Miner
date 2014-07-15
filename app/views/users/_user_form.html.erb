@@ -1,27 +1,36 @@
-<% if @user.errors.any? %>
-<b>Errors:</b>
-<ul>
-  <% @user.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
+<div class="wrapper">
+  <% if @user.errors.any? %>
+  <b>Errors:</b>
+  <div>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
-</ul>
-<% end %>
 
-<div class="new_user_form">
-  <ul>
-  <%= form_for @user do |f| %>
-    <li><%= f.label :name %>
-    <%= f.text_field :name %></li>
+  <!-- SMALL GAME LOGO ON RIGHT -->
+  <img src="<%= asset_path("miner_logo.png") %>" id="mini-logo">
 
-    <li><%= f.label :password %>
-    <%= f.password_field :password %></li>
+  <div class="new_user_form">
 
-    <li><%= f.label :password_confirmation, 'Confirm Password' %>
-    <%= f.password_field :password_confirmation %></li>
+    <%= form_for @user do |f| %>
+      <div><%= f.label :name %>
+      <%= f.text_field :name %></div>
 
-    <li><%= f.submit "Submit", id: 'submit' %>
-    my button:
-    <%= link_to "Submit Info", 'update' %></li>
-  <% end %>
-  </ul>
+      <div><%= f.label :password %>
+      <%= f.password_field :password %></div>
+
+      <div><%= f.label :password_confirmation, 'Confirm Password' %>
+      <%= f.password_field :password_confirmation%></div>
+
+      <div><%= f.submit "Submit", id: 'submit' %></div>
+
+      <div><%= link_to "Submit Info", 'update' %>out of order</div>
+      <div><%= link_to "Back", '/' %></div>
+
+    <% end %>
+
+  </div>
 </div>
