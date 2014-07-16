@@ -47,6 +47,8 @@ function preload() {
   game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
   game.load.spritesheet('shoveller', '<%= asset_path("shovel_sprite.png")%>',652,600,7);
   game.load.spritesheet('driller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
+  game.load.spritesheet('powerDriller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
+  game.load.spritesheet('borer', '<%= asset_path("drill_sprite.png")%>',548,750,4);
   game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
   game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
 }
@@ -104,6 +106,7 @@ function create() {
   case 4:
     // The power drill player-sprite and its location
    player = game.add.sprite(100, 100, 'powerDriller');
+   player.scale.setTo(.7, .7);
 
    //  The power drill animation, mining left and right.
    player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);

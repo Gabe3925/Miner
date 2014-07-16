@@ -221,6 +221,21 @@ margin-top: 80px;
   color: yellow;
 }
 
+#hall-of-fame
+{
+  float:right;
+  margin-top: -20px;
+  margin-right: 20px;
+  width: 235px;
+}
+
+#quit-from-hq
+{
+  float:bottom;
+  margin-right: 325px;
+  width: 220px;
+}
+
 /*FOR THE STORE*/
 .store-wrapper
 {
@@ -258,6 +273,63 @@ margin-top: 80px;
   float: right;
 }
 
+/*FOR THE MUSEUM/HALL OF FAME*/
+
+.museum-wrapper
+{
+  background: url(<%= asset_path('rock_face.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border: 0px ;
+  border-radius: 100px;
+  -moz-box-shadow:inset 0px 0px 80px 50px #000;
+  -webkit-box-shadow:inset 0px 0px 80px 50px #000;
+  box-shadow:inset 0px 0px 80px 50px #000;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  height: 800px;
+  width: 850px;
+}
+
+.honor-board
+{
+  background: url(<%= asset_path('diamond_plate.jpg') %>) #000000 repeat center;
+  background-size: repeat;
+  border-top: 5px solid white;
+  border-left: 5px solid lightgray;
+  border-right: 5px solid darkgray;
+  border-bottom: 5px solid gray;
+  border-radius: 10px;
+  float: top;
+  height: 500px;
+  margin-left: 370px;
+  margin-top: -420px;
+  padding: 5px;
+  font-size: 75%;
+  width: 240px;
+}
+
+#trophy
+{
+margin-left: 90px;
+margin-top: 50px;
+}
+
+#torch-right
+{
+/*float: bottom;
+margin-left: 700px;*/
+}
+
+#torch-left
+{
+/*float: bottom;
+margin-right: 100px;*/
+}
+
+
+/*FOR ALL LINK-BUTTONS IN GAME*/
 a {
   -moz-box-shadow:inset 0px 1px 0px 0px #fed897;
   -webkit-box-shadow:inset 0px 1px 0px 0px #fed897;

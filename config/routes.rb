@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # Takes a user to the store...
   get '/users/:id/store' => 'users#index'
 
+  # Takes a user to the hall-of-fame (museum)...
+  get '/museum' => 'users#museum'
+
   # Should update a users tool and decrease dollars upon BUYING at store...
   patch '/update_tool' => 'users#update_tool'
 

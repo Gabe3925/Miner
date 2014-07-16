@@ -3,7 +3,7 @@ require 'pry'
 class UsersController < ApplicationController
   before_action :require_login, except: [:index, :new, :create, :update_tool]
   before_action :find_user, only: [:show, :edit, :destroy]
-  before_action :require_current_user, except: [:index, :new, :create, :update_dollars, :update_tool]
+  before_action :require_current_user, except: [:index, :new, :create, :update_dollars, :update_tool, :museum]
 
   # This is the store page:
   def index
@@ -35,6 +35,26 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  # For the user hall of fame
+  def museum
+    @user_array = []
+    users = User.all
+    users.each do |user|
+      array = Array.new
+      array<<user.name
+      array<<user.dollars
+      user_id = user.id
+      mine = Mine.find(user_id)
+      array<<mine.name
+      array<<mine.depth
+      @user_array<<array
+    end
+    @user_array = @user_array.sort do |a, b|
+      a[4].nil? ? -1 : b[4].nil? ? 1 : a[4] <=> b[4]
+    end
+    @user_array = @user_array[0,5]
   end
 
   # Updates dollars as a user mines...

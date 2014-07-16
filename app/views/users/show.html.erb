@@ -57,21 +57,21 @@
         <img src="<%= asset_path("deed.png") %>" width=10%></a></p>
     </div>
 
+    <div id='hall-of-fame'>
+      <p><%= link_to "Hall of Fame", museum_path %>
+        <img src="<%= asset_path("trophy.png") %>" width=16% align=right></p>
+    </div>
+
 
     <div class="nav_block">
-      <% if logged_in? %>
-        <div class="log">
+        <div class="log" id="quit-from-hq">
           <%= form_for :session, url: logout_path, method: 'delete' do |f| %>
-            <%= f.submit "Quit Game", id: 'gray-button' %>
-            <img src="<%=   asset_path("mine_door.png") %>" width=10%></a>
+            <p><%= f.submit "Quit Game", id: 'gray-button' %>
+            <img src="<%=   asset_path("mine_door.png") %>" width=20% align=right></p>
           <% end %>
         </div>
-      <% else %>
-        <div class="log">
-          <%= link_to "Log In", login_path %> | <%= link_to "Play!", signup_path %>
-        </div>
-      <% end %>
     </div>
+
   </div>
 
 </div>
