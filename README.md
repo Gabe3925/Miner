@@ -8,6 +8,7 @@
 * process
 * technical details
 * known bugs and issues
+* future features to add
 * technologies used
 * 'user stories'
 * resources
@@ -90,6 +91,21 @@ Final working  verion of ERD/wireframe:
 * The gameplay view should have security measures implimented, as it is potentially (very) possible for a user to enter a different users mine.
 
 * The store purchase alert will sometimes display the incorrect item, saying 'you purchased a shovel!' when you actually purchased a drill. The correct price is deducted and correct item assigned to inventory, however.
+
+###FUTURE FEATURES / FIXES:
+
+* complete sprites for all tools.
+* resolve float rounding issues game-wide
+* resolve hall-of-fame ranking/sorting irregularities
+* add custom sounds for shovel, drill, powerdrill and borer
+* allow collaborative mining?
+* add copy describing how to mine (which keys)
+* interactive mine wall, that falls, crumbles and changes.
+* clouds of smoke while mining
+* mine-progress bar rescaled to show depth in relative feet, compared to known onjects (empire state building, etc)
+* wikipedia links appear to topics, such as 'mantle'
+* copy on landing page, deascribing concept of the game.
+
 
 ###USER STORIES:
 
