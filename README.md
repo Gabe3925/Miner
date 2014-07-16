@@ -60,13 +60,16 @@ A this point, my initial development sprint concluded. See the future-features s
 ###TECHNICAL DETAILS:
 
 Entity-Relationship Diagrams from development:
+
 ![alt tag](./images/1_erd.jpeg)
 
 Game Wireframes:
+
 ![alt tag](./images/1_wireframe.jpeg)
 
 Final working  verion of ERD/wireframe:
-![alt tag](final-erd.jpeg)
+
+![alt tag](./images/final-erd.jpeg)
 
 
 ###KNOWN BUGS AND WEAKNESSES:
