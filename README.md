@@ -64,6 +64,7 @@ Entity-Relationship Diagrams from development:
 
 Game Wireframes:
 [./images/1_wireframe.jpeg]
+![alt tag](./images/1_wireframe.jpeg)
 
 Final working  verion of ERD/wireframe:
 
