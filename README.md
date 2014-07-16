@@ -8,6 +8,7 @@
 * process
 * technical details
 * known bugs and issues
+* technologies used
 * 'user stories'
 * resources
 * source code
@@ -69,8 +70,18 @@ Game Wireframes:
 
 Final working  verion of ERD/wireframe:
 
-![alt tag](./images/final-erd.jpeg)
+![alt tag](./images/final-erd.JPG)
 
+###TECHNOLOGIES USED:
+
+* Ruby 2.1.1
+* Rails 4.1.1
+* javaScript
+* Phaser js 2.0 (game graphics/logic library)
+* jQuery
+* underscore.js
+* html
+* css
 
 ###KNOWN BUGS AND WEAKNESSES:
 
