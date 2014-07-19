@@ -26,6 +26,7 @@
 
   <div class="store-menu">
     <div>Available funds: <h1>$<%= @user.dollars %></h1></div>
+    <div>Current Equipment: <h1><%= @tool.name %></h1></div>
   </div>
 
   <div class="store-menu">
@@ -48,12 +49,14 @@
         <% end %>
       </table>
     </ol>
-    <img src="<%= asset_path("sack.png") %>">
-</div>
+
+    <p><%= link_to "Return to HQ", user_path %><img src="<%= asset_path("mine_door.png") %>" id="logo" width=20%></a>
+    </p>
+
+  </div>
 
 
-  <p><%= link_to "Return to HQ", user_path %><img src="<%= asset_path("mine_door.png") %>" id="logo" width=20%></a>
-</p>
+
 </div>
 
 <script>
@@ -90,7 +93,7 @@ $('.buy-tool-button').click(function(){
   buyTool();
   location.reload(true);
   cashRegister.play();
-  window.alert('You purchased a <%= @tool.name %>')
+  window.alert('You purchased a <%= @tool.name %>');
 
 });
 

@@ -42,15 +42,65 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
 
+  //ALWAYS LOAD ASSETS FOR CAVE WALL AND STONE
   game.load.image('cave', '<%= asset_path("cave.png") %>');
   game.load.image('stone', '<%= asset_path("stone.jpg") %>');
-  game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
-  game.load.spritesheet('shoveller', '<%= asset_path("shovel_sprite.png")%>',652,600,7);
-  game.load.spritesheet('driller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
-  game.load.spritesheet('powerDriller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
-  game.load.spritesheet('borer', '<%= asset_path("drill_sprite.png")%>',548,750,4);
-  game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
-  game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+  game.load.image('rubble', '<%= asset_path("rubble.png") %>');
+
+  game.load.audio("demonic", '<%= asset_path("demonic.mp3")%>');
+
+  // CASES FOR PRE-LOADING CONTENT:
+  switch (<%= @tool.id.to_json %>) {
+    case 1:
+      // The pickaxe
+      game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+      game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
+      game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+
+    break;
+
+    case 2:
+      // The shovel
+      game.load.spritesheet('shoveller', '<%= asset_path("shovel_sprite.png")%>',652,600,7);
+      game.load.audio("shovelling", '<%= asset_path("Shovelling.mp3")%>');
+      game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+    break;
+
+    case 3:
+      // The pneumatic drill
+      game.load.spritesheet('driller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
+      game.load.audio("drilling", '<%= asset_path("pneumatic_drill.mp3")%>');
+      game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+
+    break;
+
+    case 4:
+      // The power drill
+      game.load.spritesheet('powerDriller', '<%= asset_path("drill_sprite.png")%>',548,750,4);
+      game.load.audio("powerDrilling", '<%= asset_path("power_drill.mp3")%>');
+      game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+
+    break;
+
+    case 5:
+      // The borer
+      game.load.spritesheet('borer', '<%= asset_path("drill_sprite.png")%>',548,750,4);
+      game.load.audio("boring", '<%= asset_path("borer.mp3")%>');
+      game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+
+    break;
+
+    default:
+      // DEFAULT: The pickaxe
+      game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+      game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
+      game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
+
+    break;
+  };
+
+
+
 }
 
 function create() {
@@ -59,9 +109,7 @@ function create() {
    game.add.sprite(0, 0, 'cave');
    //  The rocks group is comprised of all the stones which make the mine wall
    rocks = game.add.group();
-   // Create sounds for mining
-   effort = game.add.audio('effort', 1, false);
-   axeStrike = game.add.audio('axe_strike', 1, false);
+
    //  Here we'll create 12 rocks spaced apart
    for (var i = 0; i < 12; i++)
    {
@@ -72,7 +120,7 @@ function create() {
        aRock.body.immovable = true;
         var aRock = rocks.create((i * 100)-100, 370, 'stone');
        aRock.body.immovable = true;
-   }
+   };
 
   switch (<%= @tool.id.to_json %>) {
   case 1:
@@ -82,6 +130,10 @@ function create() {
     //  The two pickaxe animations, mining left and right.
     player.animations.add('left', [0, 1, 2], 10, true);
     player.animations.add('right', [3, 4, 5], 10, true);
+
+    // Create sounds for mining
+   effort = game.add.audio('effort', 1, false);
+   miningSound = game.add.audio('axe_strike', 1, false);
   break;
 
   case 2:
@@ -91,6 +143,10 @@ function create() {
    //  The shovelling animation, mining left and right.
    player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
    player.animations.add('right', [0, 1, 2, 3, 4, 5], 10, true);
+
+   // Create sounds for mining
+   effort = game.add.audio('effort', 1, false);
+   miningSound = game.add.audio('shovelling', 1, false);
   break;
 
   case 3:
@@ -101,6 +157,10 @@ function create() {
    //  The pneumatic drill animation, mining left and right.
    player.animations.add('left', [1, 2, 3], 10, true);
    player.animations.add('right', [3, 2, 1], 10, true);
+
+   // Create sounds for mining
+   effort = game.add.audio('effort', 1, false);
+   miningSound = game.add.audio('drilling', 1, false);
   break;
 
   case 4:
@@ -109,8 +169,12 @@ function create() {
    player.scale.setTo(.7, .7);
 
    //  The power drill animation, mining left and right.
-   player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
-   player.animations.add('right', [0, 1, 2, 3, 4, 5], 10, true);
+   player.animations.add('left', [1, 2, 3], 10, true);
+   player.animations.add('right', [3, 2, 1], 10, true);
+
+   // Create sounds for mining
+   effort = game.add.audio('effort', 1, false);
+   miningSound = game.add.audio('powerDrilling', 1, false);
   break;
 
   case 5:
@@ -118,8 +182,12 @@ function create() {
    player = game.add.sprite(100, 100, 'borer');
 
    //  The boring animation LOL.
-   player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
-   player.animations.add('right', [0, 1, 2, 3, 4, 5], 10, true);
+   player.animations.add('left', [1, 2, 3], 10, true);
+   player.animations.add('right', [3, 2, 1], 10, true);
+
+   // Create sounds for mining
+   effort = game.add.audio('effort', 1, false);
+   miningSound = game.add.audio('boring', 1, false);
   break;
 
   default:
@@ -163,14 +231,17 @@ function update() {
     {
 
       //Mining sounds
-      if (axeStrike.isPlaying || effort.isPlaying){
+      if (miningSound.isPlaying || effort.isPlaying){
         console.log('mining left!');
+        seconds =  seconds + 1;
+
 
       }
       else{
         seconds =  seconds + 1;
+        rubbleMaker();
         effort.play();
-        axeStrike.play();
+        miningSound.play();
 
       }
 
@@ -184,17 +255,18 @@ function update() {
     {
 
       //Sounds:
-      if (axeStrike.isPlaying || effort.isPlaying){
-
+      if (miningSound.isPlaying || effort.isPlaying){
         console.log('mining right!');
+        seconds =  seconds + 1;
 
 
       }
       else{
 
         seconds =  seconds + 1;
+        rubbleMaker();
         effort.play();
-        axeStrike.play();
+        miningSound.play();
 
       }
 
@@ -211,38 +283,57 @@ function update() {
       player.frame = 6;
     }
 
+  function rubbleMaker() {
+
+    //  create rubble group
+    rubbleGroup = game.add.group();
+    //  We will enable physics for any rubble that is created in this group
+    rubbleGroup.enableBody = true;
+    //  Create and Add rubble at point of mining activity
+    var rubble = rubbleGroup.create(300, 50, 'rubble');
+    //  Let gravity affect rubble
+    rubble.body.gravity.y = 200;
+
+  };
+
 
 // GAIN POINTS AND DEPTH WITH A PICKAXE;
   function pickAxe() {
     if(seconds > 5) {
 
-    //  update the score and depth
+    //  INCREASE SCORE AND DEPTH WITH MINING...
 
       // Adds to initial score (which in turn, was drawn from db...)
       // Also takes into account Tool Speed for equipped tool
-      score = score + Math.floor((Math.random() * 10) % 5 * toolSpeed);
+      score = score + (Math.floor(Math.random() * 3)* toolSpeed);
       scoreText.setText('Funds: $' + score);
-      console.log(score);
-
-      //SHOULD PUSH UPDATED SCORE BACK TO DB!!
+      console.log(score)
 
       // Adds to initial depth...
       // Also takes into account Tool Speed for equipped tool
-      depth = depth + (Math.random() * 1) % 0.9 * toolSpeed;
-      var depthToDisplay = Math.round(depth*10)/10
-      depthText.setText('Mine Depth: ' + depthToDisplay + 'ft');
-      console.log(depth);
+      depth = depth + (Math.floor(Math.random() * 3)* toolSpeed);
+      depthText.setText('Mine Depth: ' + depth + 'ft');
+      // console.log(depth);
 
       seconds = seconds - 5;
       updateScore();
       updateDepth();
-      console.log(seconds);
+
     }
   }
+
   pickAxe();
+  centerOfEarth();
 }
 
 
+function centerOfEarth(){
+  if (depth > 20427030){
+    window.alert('You Have Reached the Center of The Earth!');
+
+  };
+
+};
 
 
 function updateScore() {

@@ -85,10 +85,10 @@ class UsersController < ApplicationController
     #sends a confirmation back to store
     # I BELIEVE THESE ARE BROKEN?
     respond_to do |format|
-      format.json { head :ok }
+      format.json { head :success }
     end
 
-    # render nothing: true
+    # render :success
     # redirect_to action: "index"
 
   end
