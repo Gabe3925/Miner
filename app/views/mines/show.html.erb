@@ -54,7 +54,8 @@ function preload() {
   switch (<%= @tool.id.to_json %>) {
     case 1:
       // The pickaxe
-      game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+      // game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+      game.load.spritesheet('miner', '<%= asset_path("small_miner.png")%>',327,300,7);
       game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
       game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
 
@@ -62,7 +63,8 @@ function preload() {
 
     case 2:
       // The shovel
-      game.load.spritesheet('shoveller', '<%= asset_path("shovel_sprite.png")%>',652,600,7);
+      // game.load.spritesheet('shoveller', '<%= asset_path("shovel_sprite.png")%>',652,600,7);
+      game.load.spritesheet('shoveller', '<%= asset_path("shovel_small.png")%>',326,300,7);
       game.load.audio("shovelling", '<%= asset_path("Shovelling.mp3")%>');
       game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
     break;
@@ -93,7 +95,8 @@ function preload() {
 
     default:
       // DEFAULT: The pickaxe
-      game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+      // game.load.spritesheet('miner', '<%= asset_path("large-miner.png")%>',650,600,7);
+      game.load.spritesheet('miner', '<%= asset_path("small_miner.png")%>',327,300,7);
       game.load.audio("axe_strike", '<%= asset_path("Mining.mp3")%>');
       game.load.audio("effort", '<%= asset_path("Effort.mp3")%>');
 
@@ -127,6 +130,7 @@ function create() {
   case 1:
     // The pickaxe player-sprite and its location
      player = game.add.sprite(100, 100, 'miner');
+     player.scale.setTo(2, 2);
 
     //  The two pickaxe animations, mining left and right.
     player.animations.add('left', [0, 1, 2], 10, true);
@@ -140,6 +144,7 @@ function create() {
   case 2:
     // The shovel player-sprite and its location
    player = game.add.sprite(100, 100, 'shoveller');
+   player.scale.setTo(2, 2);
 
    //  The shovelling animation, mining left and right.
    player.animations.add('left', [0, 1, 2, 3, 4, 5], 10, true);
@@ -194,6 +199,7 @@ function create() {
   default:
     // DEFAULT: The pickaxe player-sprite and its location
      player = game.add.sprite(100, 100, 'miner');
+     player.scale.setTo(2, 2);
 
     //  The two pickaxe animations, mining left and right.
     player.animations.add('left', [0, 1, 2], 10, true);
