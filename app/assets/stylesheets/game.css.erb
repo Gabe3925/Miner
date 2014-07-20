@@ -189,26 +189,39 @@ margin-top: 80px;
     width: 500px;
 }
 
+
 .map
 {
- background: url(<%= asset_path("crust.png") %>) rgba(0,0,0,0.4) center;
- background-size: 100px;
-  background-repeat: no-repeat;
- /*background:rgba(0,0,0,0.4);*/
+ background: url(<%=asset_path("mantle_core.png")%>) rgba(0,0,0,0.4) center;
+ background-size: 170px;
+ background-repeat: no-repeat;
  border: 2px solid black;
  border-radius: 10px;
+ color: black;
  float: right;
- height: 305px;
+ height: 325px;
  margin-right: -130px;
  margin-top: 5px;
- padding: 15px;
+ padding: 5px;
  width: 15%;
 }
 
+
 #mine-progress-image
 {
-  margin-top: 19px;
-  margin-left: 50px;
+  margin-top: 31px;
+  margin-left: 60px;
+}
+
+.crust{
+  color: black;
+  font-size: 10px;
+  background: none;
+  border: none;
+  display:inline-block;
+  font-family:Arial Black;
+  margin-bottom: 55px;
+  padding: 0px;
 }
 
 #hq-button-wrapper
@@ -311,6 +324,7 @@ margin-top: 80px;
   height: 500px;
   margin-left: 370px;
   margin-top: -420px;
+  overflow: auto;
   padding: 5px;
   font-size: 75%;
   width: 240px;

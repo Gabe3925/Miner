@@ -39,8 +39,9 @@ class UsersController < ApplicationController
 
   # For the user hall of fame
   def museum
-    @user_array = []
+    user_array = []
     users = User.all
+
     users.each do |user|
       array = Array.new
       array<<user.name
@@ -49,12 +50,14 @@ class UsersController < ApplicationController
       mine = Mine.find(user_id)
       array<<mine.name
       array<<mine.depth
-      @user_array<<array
+      user_array<<array
     end
-    @user_array = @user_array.sort do |a, b|
-      a[4].nil? ? -1 : b[4].nil? ? 1 : a[4] <=> b[4]
-    end
-    @user_array = @user_array[0,5]
+
+    @user_array = user_array.sort {|a,b| b[3] <=> a[3]}
+
+    # If we want to only show the top 10
+    # @user_array = user_array[0,10]
+
   end
 
   # Updates dollars as a user mines...

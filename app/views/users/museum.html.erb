@@ -16,11 +16,10 @@
     <img src="<%= asset_path("trophy.png") %>" id='trophy'>
 
     <div class='honor-board'>
-      The 5 deepest mines on Earth!
+      GREAT MINES:
       <ol>
       <% @user_array.each do |user| %>
         <li>Miner :  <%= user[0].capitalize %><br>
-            Wealth :  $<%= user[1] %><br>
             Mine :  <%= user[2] %><br>
             Depth :  <%= "%.1f" % user[3] %> ft<br></li><br>
       <% end %>

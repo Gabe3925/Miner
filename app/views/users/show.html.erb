@@ -18,13 +18,20 @@
   </div>
 
 <!-- MAP OF MINE PROGRESS -->
-  <div class="map">
-    Progress:
-     <img src="<%= asset_path("mine-pixel.png") %>" id="mine-progress-image"
-     height="<%= @mine.depth/44495 %>px" width="4px">
-     <!-- 8.42 (44495 ft) miles per pixel (213 pixels in that image) 1795 miles to the
-     border of the molten core (bottom of image). -->
-  </div>
+
+
+    <div class="map">
+
+      <img src="<%= asset_path("animated_mine.gif") %>" id="mine-progress-image"
+     height="<%= (@mine.depth/2000)+ 5 %>px" width="4px" alt="Current Depth : <%= @mine.depth %>">
+
+     <a href="http://en.wikipedia.org/wiki/Lithosphere" class="crust" target="_blank">Crust</a><br>
+     <a href="http://en.wikipedia.org/wiki/Asthenosphere" class="crust" target="_blank">Asthenosphere</a><br>
+     <a href="http://en.wikipedia.org/wiki/Mantle_(geology" class="crust" target="_blank">Mantle</a><br>
+     <a href="http://en.wikipedia.org/wiki/Earths_core" class="crust" target="_blank">Core</a><br>
+    </div>
+
+
 
  <!--  PLAYER STATS -->
   <div class="stats">
