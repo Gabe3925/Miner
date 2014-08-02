@@ -77,23 +77,29 @@ class UsersController < ApplicationController
     price = @tool.price
 
     # subtract tool price from users dollars
-    @user.dollars = @user.dollars - price
+    if @user.dollars <= price
 
-    # re-assign users tool_id reference ID
-    @user.tool_id = @tool.id
+      respond_to do |format|
+        msg = { :status => "error", :message => "You do not have enough money to buy that!", :html => "No Sale" }
+        format.json  { render :json => msg }
+      end
 
-    #store to database
-    @user.save
+    else
 
-    #sends a confirmation back to store
-    # I BELIEVE THESE ARE BROKEN?
-    respond_to do |format|
-      format.json { head :success }
+      @user.dollars = @user.dollars - price
+
+      # re-assign users tool_id reference ID
+      @user.tool_id = @tool.id
+
+      #store to database
+      @user.save
+
+      #success sends a confirmation back to store
+      respond_to do |format|
+        msg = { :status => "success", :message => "You purchased a " + @tool.name + ".", :html => "Purchase complete" }
+        format.json  { render :json => msg }
+      end
     end
-
-    # render :success
-    # redirect_to action: "index"
-
   end
 
   def update

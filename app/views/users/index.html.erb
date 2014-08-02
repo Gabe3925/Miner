@@ -34,18 +34,17 @@
     <ol>
       <table>
         <% @tools.each do |tool| %>
-            <tr>
-            <td width="200px">
-              <li><%= tool.name %>
-            </td>
-            <td width="100px">
-              $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
-            </td>
-            <td>
-
-              <button class='buy-tool-button' id='<%=tool.id %>'>Buy Tool</button></li>
-            </td>
-            </tr>
+          <tr>
+          <td width="200px">
+            <li><%= tool.name %>
+          </td>
+          <td width="100px">
+            $<%= number_with_delimiter(tool.price, :delimiter => ',') %>
+          </td>
+          <td>
+            <button class='buy-tool-button' id='<%=tool.id %>' name='<%=tool.name %>'>Buy Tool</button></li>
+          </td>
+          </tr>
         <% end %>
       </table>
     </ol>
@@ -62,7 +61,6 @@
 <script>
 
 function buyTool() {
-  console.log('Hello!');
 
   $.ajax({
     type: 'PATCH',
@@ -76,24 +74,34 @@ function buyTool() {
       'user_id' : <%= @user.id %>,
       'toolId' : toolId
     },
-    success: function(){
-      console.log('Hooray!');
+    success: function(json){
+      console.log(json);
+      if(json.status === "error"){
+        window.alert(json.message);
+        location.reload(true);
+      }
+      else{
+       cashRegister.play();
+       window.alert(json.message);
+       location.reload(true);
+      }
     },
-    error: function(){
-      console.log('Error!');
-    }
-  });
+    error: function(json){
+      console.log(json.message);
+    },
 
+  });
 
 };
 
 
 $('.buy-tool-button').click(function(){
   toolId = this.id;
+  toolName = this.name;
   buyTool();
-  location.reload(true);
-  cashRegister.play();
-  window.alert('You purchased a <%= @tool.name %>');
+  // location.reload(true);
+  // cashRegister.play();
+  // window.alert('You purchased a ' + toolName + '.');
 
 });
 

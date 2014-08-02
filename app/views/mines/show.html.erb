@@ -120,9 +120,9 @@ function create() {
        //  Create three rows of the rock wall
        var aRock = rocks.create((i * 100)-100, -100, 'stone');
        aRock.body.immovable = true;
-        var aRock = rocks.create((i * 100)-100, 150, 'stone');
+       var aRock = rocks.create((i * 100)-100, 150, 'stone');
        aRock.body.immovable = true;
-        var aRock = rocks.create((i * 100)-100, 370, 'stone');
+       var aRock = rocks.create((i * 100)-100, 370, 'stone');
        aRock.body.immovable = true;
    };
 
@@ -349,7 +349,7 @@ $.ajax({
     },
     url: '<%= update_dollars_path %>',
     dataType: "JSON",
-    asnyc: false,
+    // asnyc: false,
     data: {
       'updatedFunds' : score,
       'user_id' : <%= @user.id %>
@@ -369,7 +369,7 @@ $.ajax({
     },
     url: '<%= update_depth_path %>',
     dataType: "JSON",
-    asnyc: false,
+    // asnyc: false,
     data: {
       'updatedDepth' : depth,
       'user_id' : <%= @user.id %>

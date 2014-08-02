@@ -37,13 +37,13 @@ before_action :find_mine, only: [:show, :edit, :update, :destroy]
     redirect_to @mine
   end
 
-  def update_depth #UPON EXITING GRAPHIC GAMEPLAY...
+  def update_depth #Updates mine depth as a user mines...
 
     user = User.find(params[:user_id])
     @mine = user.mines.first
     new_depth = params[:updatedDepth]
-    #store to database
 
+    #store to database
     @mine.depth = new_depth
     @mine.save
 

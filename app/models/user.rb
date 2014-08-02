@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false },
     length: { maximum: 50 }
 
+  # Validate positive dollars -- dollars must be more or equal to $0
+  validates :dollars,
+    numericality: { more_than_or_equal_to: 0 }
+
   # Secure password features:
   has_secure_password
 
@@ -40,4 +44,6 @@ class User < ActiveRecord::Base
   def normalize_fields
     self.name.downcase!
   end
+
+
 end
