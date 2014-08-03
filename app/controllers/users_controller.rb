@@ -37,26 +37,24 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # For the user hall of fame
   def museum
     user_array = []
-    users = User.all
+    mines = Mine.all
 
-    users.each do |user|
+    mines.each do |mine|
       array = Array.new
-      array<<user.name
-      array<<user.dollars
-      user_id = user.id
-      mine = Mine.find(user_id)
-      array<<mine.name
-      array<<mine.depth
-      user_array<<array
+      if mine.depth >= 0
+        array<<mine.name.capitalize
+        array<<mine.depth
+        mine_owner_id = mine.user_id
+        user = User.find(mine_owner_id)
+        array<<user.name.capitalize
+        user_array<<array
+      end
     end
 
-    @user_array = user_array.sort {|a,b| b[3] <=> a[3]}
-
-    # If we want to only show the top 10
-    # @user_array = user_array[0,10]
+    # using [1] to indicate we want to sort by mine depth...
+    @user_array = user_array.sort {|a,b| b[1] <=> a[1]}
 
   end
 

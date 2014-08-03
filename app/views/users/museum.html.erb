@@ -16,12 +16,12 @@
     <img src="<%= asset_path("trophy.png") %>" id='trophy'>
 
     <div class='honor-board'>
-      GREAT MINES:
+      FAMOUS MINES of THE WORLD:
       <ol>
       <% @user_array.each do |user| %>
-        <li>Miner :  <%= user[0].capitalize %><br>
-            Mine :  <%= user[2] %><br>
-            Depth :  <%= "%.1f" % user[3] %> ft<br></li><br>
+        <li>Miner :  <%= user[2] %><br>
+            Mine :  <%= user[0] %><br>
+            Depth :  <%= number_with_delimiter("%.0f" %user[1], :delimiter => ',').to_s %> ft<br></li><br>
       <% end %>
       </ol>
     </div>

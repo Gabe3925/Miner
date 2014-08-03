@@ -50,7 +50,7 @@
   <div id="hq-button-wrapper">
 
     <div>
-      <p><%= link_to "Go Mining!", user_mine_path(@user, @mine) %>
+      <p><%= link_to "Go Mining", user_mine_path(@user, @mine) %>
         <img src="<%= asset_path("shovel.png") %>" width=10%></a></p>
     </div>
 
@@ -60,7 +60,7 @@
     </div>
 
     <div>
-      <p><%= link_to "Change Name or Password", edit_user_path(@user) %>
+      <p><%= link_to "Change Password", edit_user_path(@user) %>
         <img src="<%= asset_path("deed.png") %>" width=10%></a></p>
     </div>
 

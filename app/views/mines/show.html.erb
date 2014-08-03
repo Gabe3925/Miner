@@ -17,8 +17,7 @@ The game floats above these, but is buffered by the margin divs which float -->
 
   <!-- BUTTON TO TAKE YOU BACK TO HQ -->
   <div id="stop-mining">
-    <p><%= link_to "Home", user_path(@user), id: 'link-to-hq' %><img src="<%=   asset_path("sack.png") %>" width=90% align="left"></a></p><br>
-    Use left and right arrows to mine.<br>
+    <p><%= link_to "Back to HQ", user_path(@user), id: 'link-to-hq' %></p>
   </div>
 
 
@@ -120,9 +119,9 @@ function create() {
        //  Create three rows of the rock wall
        var aRock = rocks.create((i * 100)-100, -100, 'stone');
        aRock.body.immovable = true;
-       var aRock = rocks.create((i * 100)-100, 150, 'stone');
+       var aRock = rocks.create((i * 100)-100, 125, 'stone');
        aRock.body.immovable = true;
-       var aRock = rocks.create((i * 100)-100, 370, 'stone');
+       var aRock = rocks.create((i * 100)-100, 355, 'stone');
        aRock.body.immovable = true;
    };
 
@@ -308,7 +307,7 @@ function update() {
 
       // Adds to initial score (which in turn, was drawn from db...)
       // Also takes into account Tool Speed for equipped tool
-      score = score + (Math.floor(Math.random() * 3)* toolSpeed);
+      score = score + (Math.floor(Math.random() * 2.1)* toolSpeed);
       scoreText.setText('Funds: $' + score);
       console.log(score)
 
