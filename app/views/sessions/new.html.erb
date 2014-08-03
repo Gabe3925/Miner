@@ -1,21 +1,32 @@
 <div class="wrapper">
 
+  <audio autoplay="autoplay" loop="loop">
+    <source src="<%= asset_path("quiet_cave.mp3") %>" type="audio/mpeg">
+    <source src="<%= asset_path("quiet_cave.ogg") %>" type="audio/ogg">
+    <embed height="5" width="10" src="<%= asset_path("quiet_cave.mp3") %>">
+    Your browser does not support game music.
+  </audio>
+
   <!-- SMALL GAME LOGO ON RIGHT -->
   <img src="<%= asset_path("miner_logo.png") %>" id="mini-logo">
 
   <div class="login">
+
     <% flash.each do |name, msg| %>
       <%= content_tag :p, msg, class: name %>
     <% end %>
 
     <%= form_for :session, url: sessions_path do |f| %>
+
       <%= f.label :name %>
       <%= f.text_field :name %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
+
       <div id="login-submit-button-div">
         <%= f.submit 'Log In', id: "gray-button" %>
+        <%= link_to "Cancel", '/' %>
       </div>
     <% end %>
   </div>
